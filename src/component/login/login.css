@@ -1,0 +1,150 @@
+/* #region login-reg*/
+.login-reg .container{
+    margin: 0 auto;
+ margin-bottom: 50px;
+ height: 650px;
+}
+.login-reg .login-reg-button{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #707070;
+    width: 600px;
+    font-size: 17px;
+    border-radius: 50px;
+}
+.reg-button, .login-button{
+    width: 50%;
+    text-align: center;
+    border-radius: 50px;
+    padding: 15px 20px;
+    color: white;
+    cursor: pointer;
+}
+/* .reg-button:hover , .login-button:hover{
+    border : 1px solid #000000;
+    background-color: #ffffff;
+    color: black;
+} */
+.login-reg .selected{
+    border : 1px solid #000000;
+    background-color: #ffffff;
+    color: black;
+}
+.reg-login-form {
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+.reg-login-form form{
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+.reg-login-form form .form-title{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+input[type="password"],
+input[type="email"]{
+  width: 60%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.reg-login-form form .subscribe{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+input[type="checkbox"]{
+    scale: 1.3;
+}
+.reg-login-form form .subscribe p{
+    text-align: start;
+    width: 56%;
+    margin-left: 5px;
+}
+input[type="submit"]{
+    width: 60%;
+    padding: 10px 0;
+    background-color: #000;
+    margin-top: 10px;
+    color: white;
+    border-radius: 50px;
+    border : 1px solid #000;
+    cursor: pointer;
+}
+input[type="submit"]:hover{
+    opacity: 0.8;
+}
+input[type="submit"]:active{
+    opacity: 0.6;
+}
+.google-reg{
+    margin: 15px auto;
+    width: 60%;
+    padding: 5px 0;
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+    border : 1px solid #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.google-reg:hover{
+    background-color: #000;
+    color: white;
+}
+.google-reg img{
+    width: 25px;
+    margin-right: 10px;
+}
+.forgot-pwd{
+    margin: 15px 0;
+    color: #707070;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.or{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.or hr{
+    border: 1px solid #c7c7c7; width: 27%; margin: 10px 5px
+}
+.reg-form{
+    position: absolute;
+    transition-property: all;
+    transition-duration: 0.6s;
+    right: 0;
+    left: 0;
+    margin: auto;
+    top: 310px;
+}
+.login-form {
+    position: absolute;
+    opacity: 0;
+    transition-property: all;
+
+    transition-duration: 0s;
+    right: 0;
+    left: 0;
+    margin: auto;
+    top: 310px;
+    pointer-events: none;
+}
+/* #endregion login-reg */

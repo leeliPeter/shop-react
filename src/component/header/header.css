@@ -1,0 +1,93 @@
+/* #region header */
+header{
+    height: auto;
+}
+header .container{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+header .container .logo{
+    height: 90px;
+}
+header .container .shop-name{
+    display: none;
+    font-size: 30px;
+    color: #000;
+    margin-left: 20px;
+    position: relative;
+    top: 10px;
+}
+header nav>ul{
+    display: flex;
+    list-style: none;
+    margin-left: 20%;
+}
+header nav>ul li{
+    margin-right: 35%;
+    position: relative;
+}
+header nav>ul li .category-name{
+    font-size: 180%;
+    color: #000;
+    cursor: pointer;
+}   
+header nav>ul>li>.category-name:hover{
+    color: #707070;
+}
+/* header nav>ul li:hover .second-menu{
+    display: block;
+} */
+header nav .second-menu{
+    background-color: white;
+    /* height: 140px; */
+    height: 0;
+    position: absolute; 
+    width: 150px;
+    /* padding: 10px; */
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition-property: all;
+    transition-duration: 0.3s;
+    z-index: 10;
+}
+header nav .second-menu ul li{
+    margin-top: 10px;
+    width: 0%;
+    font-size: 140%;
+    transition-timing-function: ease-out;
+    transition-property: width;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+header nav .second-menu ul li:hover{
+    background-color: rgb(255, 221, 52);
+    width: 100%;
+}
+/* #endregion header */
+
+/* #region guide */
+.guide{
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+.guide .container ul{
+    display: flex;
+    align-items: center;
+}
+.guide .container ul li{
+    color: #707070;
+    font-size: 18px;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    border-right: 1.5px solid #707070;
+}
+.guide .container ul li:hover{
+    color: #000;
+}
+.guide .container ul li:last-child{
+    border-right: none;
+}
+/* #endregion guide */

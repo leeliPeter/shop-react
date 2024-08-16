@@ -1,0 +1,13 @@
+.home-carousel {
+  height: 700px; /* Set the height to match .home-banner */
+  width: 100%; /* Ensure it takes full width */
+}
+
+.home-carousel .carousel .slide {
+  height: 100%; /* Make sure the slide takes full height */
+}
+
+.home-carousel .carousel .slide img {
+  height: 700px; /* Ensure images fill the container height */
+  object-fit: cover; /* Maintain image aspect ratio while filling container */
+}

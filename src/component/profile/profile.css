@@ -1,0 +1,247 @@
+/* #region profile */
+.profile .container{
+    width: 50%;
+    min-height: 900px;
+}
+.profile .user-basic
+{
+    margin: 0 auto;
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(to right, rgb(215, 172, 250),#ee97d2
+    ,rgb(248, 219, 59)
+    );
+    border-radius: 30px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:25px 30px;
+}
+.profile .user-basic .greeting{
+    display: flex;
+    align-items: center;
+}
+.profile .user-basic .greeting .user-icon{
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(255, 248, 223);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+.profile .user-basic .greeting .hi div:first-child{
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.profile .user-basic .greeting .hi div:last-child{
+    font-size: 18px;
+    color: white;
+}
+.profile .reg-date{
+    color: white;
+    font-size: 20px;
+}
+.profile .myaccount{
+    padding: 10px 10px;}
+.profile .myaccount .account-title{
+    font-size: 30px;
+    margin: 30px 0;
+}
+.profile .myaccount>.myaccount-nav>li{
+    padding: 10px 10px;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.profile .myaccount>.myaccount-nav>li:hover{
+    background-color: rgb(255, 255, 255);
+    box-shadow: #b4b4b4 0 0 1px 0;
+    color: #000;
+}
+/* order-history */
+.profile .order-history{
+    background-color: rgb(219, 219, 219);
+    /* padding: 10px 10px; */
+    height: 0;
+    overflow: hidden;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+.profile .order-history>ul>li{
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.profile .order-history .order-number{
+    font-size: 18px;
+}
+.profile .order-history .order-item li {
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile .order-history li .order-item-total{
+    border-top: 1px solid #707070;
+    margin-top: 10px;
+    padding-top:10px;
+    text-align: end;
+}
+/* person-info */
+.profile .personal-info{
+    /* padding: 20px 20px; */
+    background-color: white;
+    box-sizing: border-box;
+    font-size: 20px;
+    height: 0;
+    overflow: hidden;
+    transition-property: all;
+    transition-duration: 0.5s;
+    margin-bottom: 30px;
+}
+.profile .personal-info .info-content li{
+    margin: 10px 0;}
+.profile .personal-info .info-content li>div{
+    margin: 10px 0;
+    width: 50%;
+}
+.profile .personal-info .name,
+.profile .personal-info .birth-gender,
+.profile .personal-info .country-city{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+}
+.profile .personal-info .edit{
+    font-size: 20px;
+    color: #707070;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    cursor: pointer;
+    border-top: #b3b3b3 1px solid;
+    padding-top: 10px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.profile .personal-info .edit:hover{
+    color: #000;
+
+}
+.profile .personal-info .edit div:first-child{
+    margin-right: 10px;
+}
+.profile .personal-info .edit .icon-edit{
+    font-size: 23px;
+    margin-right: 10px;
+}
+/* person-form */
+.profile .personal-info form {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    font-size: 17px;
+    margin-top: 0px;
+  }
+
+  .profile .personal-info ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .profile .personal-info ul li {
+    padding: 10px 0;
+  }
+  .profile .personal-info ul li:first-child {
+    padding: 0;
+  }
+
+  .profile .personal-info label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    /* font-weight: bold; */
+  }
+
+  .profile .personal-info input[type="text"],
+  .profile .personal-info input[type="email"],
+  .profile .personal-info input[type="tel"],
+  .profile .personal-info input[type="date"],
+  .profile .personal-info select {
+    width: 100%;
+    padding: 10px; /* Increased padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 17px; /* Increased font size */
+  }
+
+  .profile .personal-info .name, 
+  .profile .personal-info .birth-gender, 
+  .profile .personal-info .country-city {
+    display: flex;
+    gap: 5px;
+  }
+
+  .profile .personal-info .name > div, 
+  .profile .personal-info .birth-gender > div, 
+  .profile .personal-info .country-city > div {
+    flex: 1;
+  }
+
+  .profile .personal-info .name > div input, 
+  .profile .personal-info .birth-gender > div input, 
+  .profile .personal-info .country-city > div input, 
+  .profile .personal-info .birth-gender > div select {
+    width: calc(100% - 30px); /* Adjusted to account for increased padding */
+  }
+
+  .profile .personal-info .button-container {
+    display: flex;
+    gap: 10px;
+  }
+
+  .profile .personal-info button {
+    display: block;
+    width: 100%;
+    padding: 15px; /* Increased padding */
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px; /* Increased font size */
+    cursor: pointer;
+    border-radius: 50px;
+    margin-top: 10px;
+  }
+
+  .profile .personal-info button:hover {
+    opacity: 0.8;
+  }
+
+  .profile .personal-info .cancel-change-button {
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid #000000;
+  }
+
+  .profile .personal-info .cancel-change-button:hover {
+    background-color: #c3c3c3;
+  }
+/* #endregion profile */
+

@@ -1,0 +1,32 @@
+/* #region footer */
+footer{
+    background-color: #000;
+    color: white;
+    height: 230px;
+}
+footer .container{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    align-items: center;
+}
+.footer-logo{
+    margin-right:10px;}
+.footer-logo img{
+    width: 50px;
+}
+.footer-text p{
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+}
+.footer-text p a{
+    color: white;
+    display: flex;
+    align-items: center;
+}
+.footer-text img{
+    width: 20px;
+    margin-right: 10px;
+}
+/* #endregion footer */

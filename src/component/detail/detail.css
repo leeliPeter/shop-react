@@ -1,0 +1,153 @@
+/* #region product-detail */
+.product-detail>.container{
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    margin-bottom: 30px;
+}
+.detailNotFound{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    font-size: 30px;
+    color: rgb(130, 130, 130);
+}
+.product-detail .container .product-image{
+    width: 49.5%;
+}
+.product-detail .container .product-image img{
+    width: 100%;
+    margin-left: 10px;
+    position: relative;
+    left: -10px;
+}
+.product-detail .container .product-description{
+    box-sizing: border-box;
+    padding: 20px;
+    width: 49.5%;
+
+}
+.product-detail .container .product-description>div{
+    margin-bottom: 25px;
+}
+.product-detail .container .product-description .product-name{
+    font-size: 28px;
+    color: black;
+}
+.product-detail .container .product-description .price{
+    font-size: 23px;
+    color: black;
+}
+.product-detail .container .product-description .product-info p{
+    font-size: 23px;
+    line-height: 1.5em;
+    padding: 0 20px;
+}
+.product-detail .container .product-description  .size div{
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+.product-detail .container .product-description  .size ul{
+    display: flex;
+    align-items: center;
+}
+.product-detail .container .product-description  .size ul li{
+    font-size: 15px;
+    margin-top: 10px;
+    margin: 0 10px;
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    background-color: #afafaf;
+    color: white;
+    cursor: pointer;
+}
+.product-detail .container .product-description  .size ul .sizeSelected{
+    background-color: black;
+    color: white;
+}
+.product-detail .container .product-description  .size ul .sizeReminder{
+    font-size: 15px;
+    color: rgb(150, 22, 22);
+    margin-top: 5px;
+}
+
+.product-detail .container .product-description .product-quantity{
+    margin-left: 10px;
+    font-size: 22px;
+}
+.product-detail .container .product-description .quantity{
+    margin-bottom: 10px;
+}
+.product-detail .container .product-description .iconfont{
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid #707070;
+    padding: 3px;
+    background-color: white;
+}
+.product-detail .container .product-description .iconfont:hover{
+    background-color: #707070;
+    color: white;
+}
+.product-detail .container .product-description .icon-minus{
+    margin-right: 5px;
+}
+.product-detail .container .product-description .icon-add{
+    margin-left: 5px;
+}
+.product-detail .container .product-description .quantityReminder{
+    font-size: 15px;
+    color: rgb(150, 22, 22);
+    margin-left: 10px;
+}
+.product-detail .detail-btns{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+}
+.detail-btn{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 15px 20px;
+    font-size: 17px;
+    color: rgb(95, 95, 95);
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 30px;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+.product-detail .add-to-cart-button{
+    background-image: linear-gradient(to left top,rgb(255, 213, 0),rgb(255, 221, 52),rgb(241, 246, 209)  );
+}
+.product-detail .add-to-cart-button:active{
+    scale: 0.8;
+}
+.product-detail .go-back-btn{
+    background-image: linear-gradient(to left top, rgb(144, 238, 144), rgb(173, 255, 47), rgb(240, 255, 240));
+
+}
+.product-detail .go-back-btn:active{
+    scale: 0.8;
+}
+
+.product-detail .descriptionImg .container{
+    height: auto;
+    font-size: 0;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+.product-detail .descriptionImg .container img{
+    width: 100%;
+}
+/* #endregion product-detail */

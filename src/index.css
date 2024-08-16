@@ -1,0 +1,362 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+.container{
+    width: 75%;
+    margin: 0 auto;
+}
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #F9F7F6;
+}
+.hide{
+    display: none;
+}
+
+
+@media screen and (max-width:1350px){
+    .container{
+        width: 98%;
+    }
+    header .container .logo{
+        height: 80px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    header nav>ul li .category-name{
+        font-size: 130%;
+    }
+    header nav .second-menu{
+        width: 100px;
+    }
+    header nav .second-menu ul li{
+        font-size: 120%;
+    }
+    header nav>ul li{
+        margin-right: 20%;}
+
+    .home .home-banner{
+        height: 550px;
+    }
+    .home .new-arrival{
+        font-size: 25px;
+    }
+    .home .container>ul li{
+        font-size: 16px;
+    }
+
+
+    .product-detail .container .product-description .product-info p{
+        font-size: 18px;
+        padding: 0 10px
+    }
+    .profile .container{
+        width: 75%;
+    }
+    .profile .user-basic .greeting .hi div:first-child{
+        font-size: 25px;
+    }
+    .profile .user-basic .greeting .hi div:last-child{
+        font-size: 15px;
+    }
+    .profile .reg-date{
+        font-size: 18px;
+    }
+    .profile .myaccount .account-title{
+        font-size: 25px;}
+    .profile .myaccount>.myaccount-nav>li{
+        font-size: 20px;}
+    .profile .order-history .order-number{
+        font-size: 16px;
+    }
+    .profile .order-history .order-item li {
+        font-size: 16px;
+    }
+    .profile .personal-info{
+        font-size: 16px;
+    }
+    .profile .personal-info .edit{
+        font-size: 16px;
+    }
+    .profile .personal-info form {
+        padding: 15px;
+        font-size: 15px;
+      }
+    .profile .personal-info input[type="text"],
+    .profile .personal-info input[type="email"],
+    .profile .personal-info input[type="tel"],
+    .profile .personal-info input[type="date"],
+    .profile .personal-info select {
+    font-size: 15px; /* Increased font size */
+    padding: 10px 3px; /* Increased padding */
+    }
+    .profile .personal-info button {
+    font-size: 15px;
+    padding: 10px; }
+
+    .check-out-page .title{
+        font-size: 25px;
+    }
+    .check-out-page .check-out-form form {
+        width: 80%;
+    }
+    .check-out-page  ul{
+        font-size:16px
+    }
+    .check-out-page .icon-minus,
+    .check-out-page .icon-add{
+        padding: 2px;
+        margin: 0 3px;
+        font-size: 15px;}
+}
+
+
+@media screen and (max-width:850px){
+    .user{
+        display: none;
+    }
+    header .container .shop-name{
+        display: block;
+    }
+    header nav{
+        display: none;
+    }
+    .phone-nav{
+        display: block;
+    }
+    .container{
+        width: 100%;
+    }
+    header nav>ul li .category-name{
+        font-size: 110%;
+    }
+    header nav .second-menu ul li{
+        font-size: 100%;
+    }
+    header nav>ul li{
+        margin-right: 10%;}
+
+
+    /* .home .home-banner{
+        height: 400px;
+    } */
+    .home-carousel {
+        height: 400px; /* Set the height to match .home-banner */
+        width: 100%; /* Ensure it takes full width */
+      }
+      
+      .home-carousel .carousel .slide {
+        height: 100%; /* Make sure the slide takes full height */
+      }
+      
+      .home-carousel .carousel .slide img {
+        height: 400px; /* Ensure images fill the container height */
+        object-fit: cover; /* Maintain image aspect ratio while filling container */
+      }
+      
+    .home .new-arrival{
+        font-size: 23px;
+        margin-left: 10px;
+    }
+    .home .container>ul li{
+        font-size: 15px;
+        width: 50%;
+        margin: 0;
+    }
+
+
+
+    main .container>ul li{
+        width: 48%;
+        margin: 0 0.8%;
+        margin-bottom: 10px;
+        font-size: 17px;
+    }
+    main .container .show-more span{
+        width: 150px;
+        padding: 10px 15px;
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom:30px;
+    }
+
+    
+    .product-detail .container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .product-detail .container .product-image{
+        width: 100%;
+    }
+    .product-detail .container .product-image img{
+        margin-left: 0;
+        position: relative;
+        left: 0;
+    }
+    .product-detail .container .product-description{
+        width: 100%;
+    }
+    .product-detail .container .product-description .product-info p{
+        font-size: 18px;
+        padding: 0 0px
+    }
+    .add-to-cart-button{
+        margin-top: 0px;
+    }
+
+    .login-reg .login-reg-button{
+        width: 90%;
+    }
+    .reg-login-form form{
+        width: 85%;
+    }
+    input[type="password"],
+    input[type="email"]{
+    width: 100%;
+    }
+    input[type="checkbox"]{
+        scale: 1.5
+    }
+    .reg-login-form form .subscribe p{
+        width: 93%;
+    }
+    input[type="submit"]{
+        width: 100%
+    }
+    .google-reg{
+        width: 100%;
+    }
+    .reg-form,.login-form{
+        top: 250px;
+    }
+    .profile .container{
+        width: 95%;
+    }
+
+    /* profile */
+    .profile .container{
+        width: 100%;
+    }
+    .profile .user-basic{
+        padding:13px;
+        height: 140px;
+        width: 90%;
+    }
+    .profile .user-basic .greeting .hi div:first-child{
+        font-size: 22px;
+    }
+    .profile .user-basic .greeting .hi div:last-child{
+        font-size: 15px;
+    }
+    .profile .reg-date{
+        font-size: 15px;
+        margin-left: 5px;
+    }
+    .profile .myaccount .account-title{
+        font-size: 20px;}
+    .profile .myaccount>.myaccount-nav>li{
+        font-size: 18px;}
+    .profile .order-history .order-number{
+        font-size: 15px;
+    }
+    .profile .order-history .order-item li {
+        font-size: 15px;
+    }
+    .profile .personal-info{
+        font-size: 16px;
+    }
+    .profile .personal-info .edit{
+        font-size: 16px;
+    }
+    .profile .personal-info form {
+        padding: 10px;
+        font-size: 15px;
+        border-radius: 10px;
+      }
+      .profile .personal-info .name, 
+  .profile .personal-info .birth-gender, 
+  .profile .personal-info .country-city {
+    gap: 0px;
+  }
+    .profile .personal-info input[type="text"],
+  .profile .personal-info input[type="email"],
+  .profile .personal-info input[type="tel"],
+  .profile .personal-info input[type="date"],
+  .profile .personal-info select {
+    font-size: 15px; /* Increased font size */
+    padding: 10px 3px; /* Increased padding */
+  }
+  .profile .personal-info button {
+    font-size: 15px;
+    padding: 10px; }
+    
+
+
+    .check-out-page .check-out-form .check-out-logo{
+        position: relative;
+        left: 10px;
+    }
+    .check-out-page .check-out-form{
+        width:100%;
+        position: relative;
+        left: -10px;
+    }
+    .check-out-page .check-out-form form {
+        width: 85%;
+    }
+    .check-out-page .check-out-form input[type="email"]{
+        width: 100%;
+    }
+    .check-out-page .check-out-cart{
+        display: none;
+    }
+    .check-out-page .phone-cart {
+        display: block;
+    }
+}

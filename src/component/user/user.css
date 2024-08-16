@@ -1,0 +1,196 @@
+/* #region user */
+.user{
+    height: 40px;
+    background: #ffffff;
+    font-size: 18px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.user .container{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: relative;
+}
+.user .logo{
+    color: #707070;
+    font-size: 25px;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.2s;
+}
+.user .logo:hover{
+    color: #000;
+    /* font-size: 30px; */
+    text-shadow: 0 0 5px #dfc543;
+}
+
+.user .cart-logo {
+    padding-right: 23px;
+    border-right: 1.5px solid #707070;
+    position: relative;
+}
+.user .cart-number{ 
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    height: 13px;
+    width: 15px;
+    background-color: #f38686;
+    font-weight: bolder;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 4px;
+    font-size: 18px;
+    text-align: center; 
+    line-height: 13px;
+}
+
+
+.user .cart-container{
+    position: absolute;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    right:20px;
+    top: 40px;
+    width: 600px;
+    background-color: white;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    z-index: 9;
+    transition-duration: .3s;
+    transition-property: all;
+    height: 0;
+    overflow: hidden;
+    /* padding: 20px; */
+}
+.user .cart-container .empty-cart-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    font-size: 25px;
+    flex-direction: column;
+    color: #707070;
+}
+.user .cart-container .empty-cart-message .icon-cart-empty{
+    font-size: 40px;
+    padding-bottom: 10px;
+}
+.user .cart-container .cart-items{
+    height: auto;
+    max-height: 460px;
+    overflow-y: auto;
+}
+.user .cart-items .cart-title{
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: #000;
+}
+.user .cart-items .empty-cart
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    font-size: 30px;
+    color: #707070;
+}
+.user .cart-items .empty-cart div:first-child{
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+.user .cart-items  ul li{
+    display: flex;
+    padding: 10px 10px;
+    border-bottom: #d4d4d4 1px solid;
+}
+.user .cart-items  ul li .image{
+    width: 25%;
+}
+.user  .cart-items ul li .image img{
+    width: 100%;
+}
+.user .cart-items ul li .product-info{
+    margin-left: 10px;
+    width: 75%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.user  .cart-items  .name-price,
+.user  .cart-items .quantity-del{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user  .cart-items .quantity-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user .cart-items .icon-minus,
+.user  .cart-items .icon-add{
+    cursor: pointer;
+    border: 1px solid #707070;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 0 5px
+}
+.user  .cart-items .icon-minus:hover,
+.user  .cart-items .icon-add:hover{
+    background-color: #707070;
+    color: white;
+}
+.user .cart-items .quantityReminder{
+    color: #a82525;
+}
+.user  .cart-items .icon-del{
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 0 5px
+}
+.user  .cart-items .icon-del:hover{
+    border: 1px solid #707070;
+    background-color: #707070;
+    color: white;
+}
+.user  .cart-container .cart-check-out{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+}
+.user  .cart-container .cart-check-out>div{
+    width: 50%;
+}
+.user .cart-container .cart-check-out .total{
+    margin: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user .cart-container .cart-check-out .check-out{
+    margin-top: 20px;
+    background-color: #000;
+    color: white;
+    padding: 10px 0;
+    border-radius: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+.user .cart-container .cart-check-out .check-out:hover{
+    opacity: 0.8;
+}
+
+.user .icon-user{
+    padding-left: 15px;
+    margin-right: 40px; 
+}
+/* #endregion user */
