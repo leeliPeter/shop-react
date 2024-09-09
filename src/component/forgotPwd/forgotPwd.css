@@ -1,0 +1,84 @@
+/* #region forgot-pwd */
+.forgotPwd .container{
+    display: flex   ;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+    height: 660px;
+}
+.forgotPwd .title{
+    font-size: 35px;
+}
+.forgotPwd .forgot-pwd-content{
+    width: 60%;
+    margin-top: 30px;
+    background-color: rgb(255, 255, 255);
+    padding: 35px;
+    box-sizing: border-box;
+}
+.forgotPwd .forgot-pwd-content p{
+    margin-bottom: 30px;
+}
+.forgotPwd .forgot-pwd-content p:first-child{
+    font-size: 30px;}
+
+.forgotPwd .forgot-pwd-content p:nth-child(2){
+    line-height: 25px;
+        font-size: 20px;}
+.forgotPwd .forgot-pwd-content >div{
+    position: relative;
+}
+.forgotPwd .forgot-reminder{
+    position: absolute;
+    top: -7px;
+    color: rgb(191, 21, 21);
+    font-size: 16px;
+}
+.forgotPwd .forgot-pwd-content form{
+      
+}
+.forgotPwd .forgot-pwd-content form div:first-child input{
+    width: 100%;
+}
+
+.forgotPwd .forgot-pwd-content .forgotPwd-btn{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.forgotPwd .forgot-pwd-content .forgotPwd-btn div{
+    border-radius: 50px;
+    width: 200px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    height: 50px;
+    border: 2px solid #9d9d9d;
+    cursor: pointer;
+}
+/* remove button decoration  */
+.forgotPwd .forgot-pwd-content button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.forgotPwd .forgot-pwd-content .forgotPwd-btn div:hover{
+    opacity: 0.6;
+}
+.forgotPwd .forgot-pwd-content .forgotPwd-btn div:last-child{
+    background-color: #000;
+    color: white;
+}
+.forgotPwd .back{
+    cursor: pointer;
+    font-size: 18px;
+}
+.forgotPwd .back span:last-child{
+    text-decoration: underline;
+}
+    
+
+
+/* #endregion forgot-pwd */

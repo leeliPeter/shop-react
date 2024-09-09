@@ -1,10 +1,11 @@
-import { products, Product } from "../../ts/type";
+import { Product } from "../../ts/type";
 import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
 import { updateCart } from "../../Redux/userInfoSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./detail.css";
 import Carousel from "./carousel/Carousel";
+import Loading from "../loading/Loading";
 
 interface Params {
   [key: string]: string | undefined;
@@ -21,34 +22,65 @@ export default function Detail() {
   const { id } = useParams<Params>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
   const userCart = useAppSelector((state) => state.userInfo.cart);
-
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [showReminder, setShowReminder] = useState<boolean>(false);
   const [showSizeReminder, setShowSizeReminder] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true); // Add loading state
 
   useEffect(() => {
     if (id) {
-      const numericId = parseInt(id, 10);
-      const foundProduct = products.find(
-        (item) => item.productId === numericId
-      );
-      if (foundProduct) {
-        setProduct(foundProduct);
-        setSelectedSize(null);
-        setQuantity(1);
-        setShowReminder(false);
-        setShowSizeReminder(false);
-      }
+      const fetchProduct = async () => {
+        setLoading(true); // Set loading to true before fetching
+        try {
+          const response = await fetch(
+            `http://localhost:3001/get-product/products/${id}`
+          );
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const productData = await response.json();
+          setProduct(productData);
+          setSelectedSize(null);
+          setQuantity(1);
+          setShowReminder(false);
+          setShowSizeReminder(false);
+        } catch (error) {
+          console.error("Error fetching product:", error);
+        } finally {
+          setLoading(false); // Set loading to false after fetching
+        }
+      };
+
+      fetchProduct();
     }
     window.scrollTo(0, 0);
   }, [id]);
 
+  if (loading) {
+    return <Loading />; // Show loading indicator while fetching
+  }
+
   if (!product) {
-    return <div className="detailNotFound">Product not found</div>;
+    return (
+      <div className="detailNotFound">
+        <div className="container">
+          <div className="message">
+            Product with the specified ID not found.
+          </div>
+          <div
+            className="goback-btn"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Go Back
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const sizeQuantities = new Map<string, number>(
@@ -125,8 +157,23 @@ export default function Detail() {
           <Carousel product={product} />
         </div>
         <div className="product-description">
+          <div className="product-brand">
+            {product.brand
+              ? product.brand.charAt(0).toUpperCase() + product.brand.slice(1)
+              : ""}
+          </div>
           <div className="product-name">{product.name}</div>
-          <div className="price">${product.price}</div>
+
+          <span
+            className={`price ${product.discount ? "abandoned-price" : ""}`}
+          >
+            ${product.price.toFixed(2)}
+          </span>
+          {product.discount > 0 && (
+            <span className="discount-price">
+              ${(product.price * product.discount).toFixed(2)}
+            </span>
+          )}
 
           <div className="product-info">
             <p>{product.description}</p>

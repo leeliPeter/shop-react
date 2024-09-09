@@ -9,16 +9,20 @@ footer .container{
     justify-content: center;
     padding: 20px 0;
     align-items: center;
+    padding-top: 35px;
 }
 .footer-logo{
     margin-right:10px;}
 .footer-logo img{
-    width: 50px;
+    width: 65px;
 }
+
 .footer-text p{
     padding: 5px 0;
     display: flex;
     align-items: center;
+    line-height: 20px;
+    font-size: 18px;
 }
 .footer-text p a{
     color: white;
@@ -28,5 +32,27 @@ footer .container{
 .footer-text img{
     width: 20px;
     margin-right: 10px;
+}
+
+footer .shop-name{
+    color: #ffffff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(90deg, #ff6b6b, #f94d6a, #c73a8e);
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    letter-spacing: 3px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    /* padding: 10px 20px; */
+    /* margin-left: 25px; */
 }
 /* #endregion footer */

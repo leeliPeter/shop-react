@@ -58,8 +58,12 @@ body{
 .hide{
     display: none;
 }
+@media screen and (max-width:1600px){
 
-
+    .product-detail .container .product-description .product-info p {
+        font-size: 17px;
+    }
+}
 @media screen and (max-width:1350px){
     .container{
         width: 98%;
@@ -81,6 +85,8 @@ body{
     header nav>ul li{
         margin-right: 20%;}
 
+
+
     .home .home-banner{
         height: 550px;
     }
@@ -88,6 +94,9 @@ body{
         font-size: 25px;
     }
     .home .container>ul li{
+        font-size: 16px;
+    }
+    .home .container>ul li .description .product-name{
         font-size: 16px;
     }
 
@@ -154,10 +163,44 @@ body{
         padding: 2px;
         margin: 0 3px;
         font-size: 15px;}
+
+    
+    .forgotPwd .forgot-pwd-content{
+        width: 70%;
+    }
+
+
+    .reset .container{
+        padding: 0 100px;}
+
+    .reset .logo img{
+        width: 150px;
+    }
+    .reset .logo .shopName {
+        font-size: 30px;
+        padding: 10px 20px;
+    }
+
+
+    .payment .title{
+        font-size: 25px;}
+
+    .payment .icon-container .line {
+        width: 200px;
+    }
+    .payment .cart>div{
+        margin-left: 0;
+    }
+    .payment .next-step-title{
+        font-size: 23px;
+    }
+    .payment .next-step .line {
+        width: 250px;
+    }
 }
 
 
-@media screen and (max-width:850px){
+@media screen and (max-width:900px){
     .user{
         display: none;
     }
@@ -187,10 +230,15 @@ body{
         height: 400px;
     } */
     .home-carousel {
-        height: 400px; /* Set the height to match .home-banner */
+        height: 500px; /* Set the height to match .home-banner */
         width: 100%; /* Ensure it takes full width */
       }
       
+.home-carousel img {
+    height: 500px;
+}
+
+
       .home-carousel .carousel .slide {
         height: 100%; /* Make sure the slide takes full height */
       }
@@ -201,13 +249,16 @@ body{
       }
       
     .home .new-arrival{
-        font-size: 23px;
+        font-size: 25px;
         margin-left: 10px;
     }
     .home .container>ul li{
         font-size: 15px;
         width: 50%;
         margin: 0;
+    }
+    .home .container>ul li .description .product-name{
+        font-size: 15px;
     }
 
 
@@ -216,14 +267,32 @@ body{
         width: 48%;
         margin: 0 0.8%;
         margin-bottom: 10px;
-        font-size: 17px;
+        /* font-size: 17px; */
+    }
+    main .container>ul li .description{
+        width: 90%;
+        padding: 20px 10px;
+        padding-top: 10px;
+    }
+    main .container>ul li .description .product-name{
+        font-size: 15px;
     }
     main .container .show-more span{
-        width: 150px;
+        width: 50px;
         padding: 10px 15px;
         font-size: 20px;
         margin-top: 20px;
         margin-bottom:30px;
+    }
+    main .container .notfound .reminder{
+        font-size: 130%;
+        margin-top: 0px;
+    }
+    main .container .notfound .reminder .goback-btn{
+        width: 150px;
+        padding: 10px 15px;
+        font-size: 20px;
+        margin-top: 20px;
     }
 
     
@@ -231,12 +300,22 @@ body{
         flex-direction: column;
         align-items: center;
     }
+    .detailNotFound .container .goback-btn{
+        width: 150px;
+        padding: 10px 15px;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+    .detailNotFound .container .message{
+        font-size: 20px;
+    }
+
     .product-detail .container .product-image{
         width: 100%;
     }
     .product-detail .container .product-image img{
         margin-left: 0;
-        position: relative;
+        /* position: relative; */
         left: 0;
     }
     .product-detail .container .product-description{
@@ -246,12 +325,24 @@ body{
         font-size: 18px;
         padding: 0 0px
     }
-    .add-to-cart-button{
-        margin-top: 0px;
+    .product-detail .detail-btn{
+        width: 70%;
+        margin-top: 20px;
     }
+    .product-detail .go-back-btn {
+        display: none;
+        width: 50%;
+      }
+      .product-detail .descriptionImg .container{
+        margin-top: 0px;}
+
+
 
     .login-reg .login-reg-button{
         width: 90%;
+    }
+    .login-reg-reminder {
+        font-size: 18px;
     }
     .reg-login-form form{
         width: 85%;
@@ -283,6 +374,17 @@ body{
     .profile .container{
         width: 100%;
     }
+    .profile .log-out.active {
+        width: 100%;
+        font-size: 20px;
+        opacity: 1;
+      }
+      .profile .log-out .answer-btn div{
+        font-size: 17px;
+        width: 50px;
+        height: 30px;
+      }
+    
     .profile .user-basic{
         padding:13px;
         height: 140px;
@@ -311,6 +413,16 @@ body{
     .profile .personal-info{
         font-size: 16px;
     }
+    .profile .myaccount>.myaccount-nav .profile-order{
+        font-size: 19px;
+      }
+      .profile-personal-info .profileWord{
+        font-size: 19px;
+      }
+      .profile .order-history .quantity-price .price .discount-price{
+        font-size: 19px;
+      }
+
     .profile .personal-info .edit{
         font-size: 16px;
     }
@@ -359,4 +471,140 @@ body{
     .check-out-page .phone-cart {
         display: block;
     }
+
+
+    .forgotPwd .forgot-pwd-content{
+        width: 100%;
+        padding: 35px 15px;
+    }
+    .forgotPwd .forgot-pwd-content p:first-child{
+        font-size: 25px;}
+    .forgotPwd .forgot-pwd-content p:nth-child(2){
+        font-size: 17px;}
+    .forgotPwd .forgot-pwd-content .forgotPwd-btn{
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    .forgotPwd .forgot-pwd-content .forgotPwd-btn div{
+        width: 150px;
+    }
+
+
+
+    .reset .container{
+        padding: 0 10px;
+        width: 100%;
+    }
+
+    .reset .logo img{
+        width: 90px;
+    }
+    .reset .logo .shopName {
+        font-size: 23px;
+        padding: 10px 20px;
+    }
+    .reset form .inputBox input[type="password"] {
+        width: 300px;
+    }
+
+
+
+
+    .payment .container{
+        margin-bottom: 10px;
+    }
+    .payment .title{
+        font-size: 25px;
+        margin: 10px 0;
+    }
+    .payment .icon-container .line {
+        width: 70px;
+    }
+    .payment .icon-container .icon-done-01{
+        font-size: 35px;}
+    .payment .icon-container .shipping div:first-child,
+    .payment .icon-container .payment div:first-child{
+        font-size: 17px;
+        margin-bottom: 5px;
+        margin-top: 15px;
+        width: 30px;
+        height: 30px;
+    }
+    .payment .icon-container .shipping div:last-child,    .payment .icon-container .payment div:last-child{
+        font-size: 14px;
+    }
+
+
+    .payment .confirm-info{
+        flex-direction: column-reverse; 
+        height: auto;
+        justify-content: start;
+    }
+    .payment .cart{
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 17px;
+        padding: 10px 15px;
+    }
+    .payment .cart>div{
+        margin: 15px 0;}
+    .payment .cart ul{
+        height: 200px;}
+        .payment .cart ul li{
+            font-size: 16px;
+        }
+
+
+        .payment .confirm-info .personal-info {
+        margin-top: 0px;
+        font-size: 17px;
+        padding: 10px;
+        padding-left: 15px;
+         width: 100% !important; 
+    }
+    .payment .confirm-info .personal-info li{
+        margin-bottom: 20px;
+    }
+    .payment .confirm-info .personal-info li div:first-child{
+        margin-bottom: 10px;
+        font-weight:650;
+    }
+
+
+    .payment .confirm-info .personal-info .fl-name li:first-child,
+.payment .confirm-info .personal-info .country-post li:first-child,
+.payment .confirm-info .personal-info .city-state li:first-child{
+    width: 55%;
 }
+
+
+    .payment .next-step-title{
+        font-size: 20px;
+        margin: 0;
+    }
+    .payment .next-step .line {
+        width: 100px;
+    }
+    .payment .next-step .sentence {
+        font-size: 20px;
+        line-height: 1.8;
+        color: #333;
+        background-color: transparent;
+        padding: 20px;
+        border-radius: 30px;
+        border: none;
+        max-width: 700px;
+        margin: 0px auto;
+        box-shadow: none;
+      }
+
+
+    .loading .loadingWord{
+        font-size: 19px;
+    }
+
+    .footer-text p{
+        font-size: 15px;
+    }
+}
+

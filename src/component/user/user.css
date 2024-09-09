@@ -125,6 +125,16 @@
     justify-content: space-between;
     align-items: center;
 }
+.user .cart-items .name-price .discount-price{
+    color: rgb(164, 32, 32);
+    font-size: 20px;
+    margin-right: 10px;
+}
+.user .cart-items .name-price .abandoned-price{
+    text-decoration: line-through;
+    color: #707070;
+    font-size: 18px;
+}
 .user  .cart-items .quantity-button{
     display: flex;
     justify-content: center;
@@ -192,5 +202,33 @@
 .user .icon-user{
     padding-left: 15px;
     margin-right: 40px; 
+}
+.user .user-icon{
+    color:white;
+    text-align: center;
+    margin-right: 40px; 
+    line-height: 25px;
+    margin-left: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    background-image: linear-gradient(to right, rgb(215, 172, 250),#ee97d2
+    ,rgb(248, 219, 59)
+    );
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+    position: relative;
+}
+.user .user-icon .container{
+    position: absolute;
+    height: 50px;
+    width: 30px;
+    background-color: #707070;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    top: -1px;
 }
 /* #endregion user */

@@ -1,16 +1,100 @@
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent, useRef } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
+import { useNavigate } from "react-router-dom";
+import { logout, clearUserInfoExceptCart } from "../../Redux/userInfoSlice";
+import { useAppDispatch } from "../../Redux/hooks";
+import { updateUserInfo } from "../../Redux/userInfoSlice";
+
+import { Order, Item } from "../../ts/type";
 import "./profile.css";
 
 export default function Profile() {
+  const dispatch = useAppDispatch();
+  const userInfo = useSelector((state: RootState) => state.userInfo);
+  const isLogin = useSelector((state: RootState) => state.isLogin);
+
+  const navigate = useNavigate();
+
+  const logOutRef = useRef<HTMLDivElement>(null);
+  const [isLogOutActive, setIsLogOutActive] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isprofilePersonalInfo, setIsprofilePersonalInfo] = useState(false);
+
+  useEffect(() => {
+    // Redirect to home page if not logged in
+    window.scrollTo(0, 0);
+    if (!isLogin) {
+      navigate("/");
+    }
+    console.log("profile", userInfo);
+  }, [isLogin, navigate]);
+
+  useEffect(() => {
+    console.log("User Info:", userInfo);
+  }, [userInfo]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        logOutRef.current &&
+        !logOutRef.current.contains(event.target as Node)
+      ) {
+        setIsLogOutActive(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [logOutRef]);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  };
+
+  const handleLogOutClick = () => {
+    setIsLogOutActive(true);
+  };
+
+  const handleNoClick = () => {
+    setIsLogOutActive(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/user/logout", {
+        method: "POST",
+        credentials: "include", // Include cookies in the request
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.message); // This will log: "Logged out successfully"
+        dispatch(logout());
+        dispatch(clearUserInfoExceptCart());
+      } else {
+        console.log("Logout failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    birthDate: "",
-    gender: "",
-    phone: "",
-    country: "",
-    city: "",
-    address: "",
+    firstName: userInfo.profile.firstName,
+    lastName: userInfo.profile.lastName,
+    birthday: userInfo.profile.birthday,
+    gender: userInfo.profile.gender,
+    phone: userInfo.profile.phone,
+    state: userInfo.profile.state,
+    zip: userInfo.profile.zip,
+    country: userInfo.profile.country,
+    city: userInfo.profile.city,
+    address: userInfo.profile.address,
   });
 
   useEffect(() => {
@@ -56,32 +140,47 @@ export default function Profile() {
 
     profilePersonalInfo?.addEventListener("click", function () {
       if (showPersonalInfo.classList.contains("hide")) {
-        personalInfo.style.height = "0";
+        // personalInfo.style.height = isEdit ? "730px" : "0";
         personalInfo.style.overflow = "hidden";
         personalInfo.style.padding = "0";
         showPersonalInfo.classList.remove("hide");
         closePersonalInfo.classList.add("hide");
         profilePersonalInfo.style.backgroundColor = "transparent";
+        setIsprofilePersonalInfo(false);
       } else {
-        personalInfo.style.height = "630px";
-        personalInfo.style.padding = "10px";
+        // personalInfo.style.height = isEdit ? "730px" : "650px";
+        // personalInfo.style.padding = "10px";
         showPersonalInfo.classList.add("hide");
         closePersonalInfo.classList.remove("hide");
         profilePersonalInfo.style.backgroundColor = "white";
+        setIsprofilePersonalInfo(true);
       }
     });
-
-    const profileEdit = document.querySelector(".edit") as HTMLDivElement;
+  }, []);
+  useEffect(() => {
     const infoContent = document.querySelector(".info-content") as HTMLElement;
     const editForm = document.querySelector(".edit-form") as HTMLFormElement;
-
-    profileEdit?.addEventListener("click", function () {
+    const personalInfo = document.querySelector(
+      ".personal-info"
+    ) as HTMLElement;
+    if (isEdit && isprofilePersonalInfo) {
       infoContent.classList.add("hide");
-      profileEdit.style.display = "none";
       editForm.classList.remove("hide");
-      personalInfo.style.height = "630px";
-    });
-  }, []);
+      personalInfo.style.height = "750px";
+      personalInfo.style.padding = "15px";
+    } else if (!isEdit && isprofilePersonalInfo) {
+      infoContent.classList.remove("hide");
+      editForm.classList.add("hide");
+      personalInfo.style.height = "660px";
+      personalInfo.style.padding = "15px";
+    } else {
+      // editForm.classList.add("hide");
+      personalInfo.style.height = "0";
+      personalInfo.style.padding = "0";
+      // editForm.style.height = "0";
+      // editForm.style.padding = "0";
+    }
+  }, [isEdit, isprofilePersonalInfo]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -90,49 +189,167 @@ export default function Profile() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleCancelChanges = () => {
+    setFormData({
+      firstName: userInfo.profile.firstName,
+      lastName: userInfo.profile.lastName,
+      birthday: userInfo.profile.birthday,
+      gender: userInfo.profile.gender,
+      phone: userInfo.profile.phone,
+      state: userInfo.profile.state,
+      zip: userInfo.profile.zip,
+      country: userInfo.profile.country,
+      city: userInfo.profile.city,
+      address: userInfo.profile.address,
+    });
+    setIsEdit(false); // Close the edit form
+  };
+
+  const handleSaveChanges = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      // Prepare the updated profile data
+      const updatedProfile = {
+        ...userInfo.profile,
+        ...formData, // Assuming formData contains all necessary fields
+      };
+      console.log(updateUserInfo);
+      // Dispatch the updateUserInfo action to update the Redux state and localStorage
+      dispatch(updateUserInfo({ profile: updatedProfile }));
+      setIsEdit(false);
+      console.log("Profile updated successfully");
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+  };
+
   return (
     <div className="profile">
       <div className="container">
         <div className="user-basic">
           <div className="greeting">
+            <div
+              className="logout-btn iconfont icon-log-out"
+              onClick={handleLogOutClick}
+            ></div>
+            <div
+              className={`log-out-container ${
+                isLogOutActive ? "active" : "inactive"
+              }`}
+            >
+              <div
+                className={`log-out ${isLogOutActive ? "active" : "inactive"}`}
+                ref={logOutRef}
+              >
+                <div className="question">
+                  Are you sure you want to log out?
+                </div>
+                <div className="answer-btn">
+                  <div
+                    className="yes"
+                    onClick={handleLogout}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === "Enter" && handleLogout()}
+                  >
+                    Yes
+                  </div>
+                  <div className="no" onClick={handleNoClick}>
+                    No
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="user-icon">M</div>
             <div className="hi">
               <div>Good Morning</div>
-              <div>lei23lei91@gmail.com</div>
+              <div>{userInfo.name}</div>
             </div>
           </div>
           <div className="reg-date">
-            You've been a member of MyShop since July 2024
+            You've been a member since {formatDate(userInfo.registerDate)}
           </div>
         </div>
         <div className="myaccount">
           <div className="account-title">My Account</div>
           <ul className="myaccount-nav">
             <li className="profile-order">
-              <div>Orders(1)</div>
+              <div>Orders ({userInfo.orderHistory.length})</div>
               <div className="iconfont show-order icon-arrow_r"></div>
               <div className="iconfont close-order icon-arrow_d hide"></div>
             </li>
             <div className="order-history">
-              <ul>
-                <li>
-                  <div className="order-number">Order number:123</div>
-                  <ul className="order-item">
-                    <li>
-                      <div className="item-number">backpack * 1</div>
-                      <div className="item-price">200</div>
+              {userInfo.orderHistory.length === 0 ? (
+                <ul className="empty-order-history">
+                  <div className="iconfont icon-cart-empty"></div>
+                  <div>Empty</div>
+                </ul>
+              ) : (
+                <ul>
+                  {userInfo.orderHistory.map((order: Order, index: number) => (
+                    <li key={index} className="order">
+                      <div className="order-num">
+                        <div>Order ID :</div>
+                        <div>{order.orderId}</div>
+                      </div>
+                      <ul>
+                        {order.cart.map((item: Item, itemIndex: number) => (
+                          <li key={itemIndex}>
+                            <div className="item-size">
+                              <div>{item.product.name}</div>
+                              <div>Size : {item.size}</div>
+                            </div>
+                            <div className="quantity-price">
+                              <div>Quantity : {item.quantity}</div>
+                              {/* <div>${item.product.price}</div> */}
+                              <div className="price">
+                                {item.product.discount > 0 ? (
+                                  <>
+                                    {/* Display discounted price */}
+                                    <div className="discount-price">
+                                      $
+                                      {(
+                                        item.product.price *
+                                        item.product.discount
+                                      ).toFixed(2)}
+                                    </div>
+                                    {/* Display original price as abandoned price */}
+                                    <div className="abandoned-price origin-price">
+                                      ${item.product.price.toFixed(2)}
+                                    </div>
+                                  </>
+                                ) : (
+                                  /* Display original price if no discount */
+                                  <div>${item.product.price.toFixed(2)}</div>
+                                )}
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="order-item-total">
+                        <div>Total :</div>
+                        <div>${order.totalPrice.toFixed(2)}</div>
+                      </div>
+                      <div className="order-date">
+                        <div>Order date :</div>
+                        <div>{new Date(order.date).toLocaleDateString()}</div>
+                      </div>
+                      <div className="order-status">
+                        <div>Order status :</div>
+                        <div className={`order-status ${order.status}`}>
+                          {order.status.charAt(0).toUpperCase() +
+                            order.status.slice(1)}
+                        </div>
+                      </div>
                     </li>
-                    <li>
-                      <div className="item-number">MYD backpack * 1</div>
-                      <div className="item-price">100</div>
-                    </li>
-                  </ul>
-                  <div className="order-item-total">Total $100</div>
-                </li>
-              </ul>
+                  ))}
+                </ul>
+              )}
             </div>
             <li className="profile-personal-info">
-              <div>Profile</div>
+              <div className="profileWord">Profile</div>
               <div className="iconfont show-personal-info icon-arrow_r"></div>
               <div className="iconfont close-personal-info icon-arrow_d hide"></div>
             </li>
@@ -140,54 +357,71 @@ export default function Profile() {
               <ul className="info-content">
                 <li className="email">
                   <div>Email</div>
-                  <div>lei23lei91@gmail.com</div>
+                  <div>{userInfo.email}</div>
                 </li>
                 <li className="name">
                   <div className="f-name">
                     <div>First name</div>
-                    <div>-</div>
+                    <div>{userInfo.profile.firstName}</div>
                   </div>
                   <div className="l-name">
                     <div>Last name</div>
-                    <div>-</div>
+                    <div>{userInfo.profile.lastName}</div>
                   </div>
                 </li>
                 <li className="birth-gender">
                   <div className="birthday">
                     <div>Date of birth</div>
-                    <div>-</div>
+                    <div>{userInfo.profile.birthday}</div>
                   </div>
                   <div className="gender">
                     <div>Gender</div>
-                    <div>-</div>
+                    <div>{userInfo.profile.gender}</div>
                   </div>
                 </li>
                 <li className="phone">
                   <div>Phone</div>
                   <div>
-                    <div>-</div>
+                    <div>{userInfo.profile.phone}</div>
                   </div>
                 </li>
                 <li className="country-city">
                   <div className="country">
                     <div>Country</div>
-                    <div>-</div>
+                    <div>{userInfo.profile.country}</div>
                   </div>
+                  <div className="state">
+                    <div>State</div>
+                    <div>{userInfo.profile.state}</div>
+                  </div>
+                </li>
+                <li className="state-zip">
                   <div className="city">
                     <div>City</div>
-                    <div>-</div>
+                    <div>{userInfo.profile.city}</div>
+                  </div>
+                  <div className="zip">
+                    <div>Zip</div>
+                    <div>{userInfo.profile.zip}</div>
                   </div>
                 </li>
                 <li className="address">
                   <div>Address</div>
-                  <div>-</div>
+                  <div>{userInfo.profile.address}</div>
                 </li>
+                <div
+                  className="edit"
+                  onClick={() => {
+                    setIsEdit(true);
+                    console.log(isEdit);
+                  }}
+                >
+                  <div>Edit your details</div>
+                  <div className="iconfont icon-edit"></div>
+                </div>
               </ul>
-              <div className="edit">
-                <div>Edit your details</div>
-                <div className="iconfont icon-edit"></div>
-              </div>
-              <form className="edit-form hide">
+
+              <form className="edit-form hide" onSubmit={handleSaveChanges}>
                 <ul>
                   <li className="email">
                     <label htmlFor="email">Email</label>
@@ -196,7 +430,7 @@ export default function Profile() {
                       type="email"
                       id="email"
                       name="email"
-                      value="lei23lei91@gmail.com"
+                      value={userInfo.email}
                     />
                   </li>
                   <li className="name">
@@ -205,9 +439,10 @@ export default function Profile() {
                       <input
                         type="text"
                         id="first-name"
-                        name="first-name"
+                        name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="l-name">
@@ -215,9 +450,10 @@ export default function Profile() {
                       <input
                         type="text"
                         id="last-name"
-                        name="last-name"
+                        name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </li>
@@ -227,9 +463,10 @@ export default function Profile() {
                       <input
                         type="date"
                         id="birth-date"
-                        name="birth-date"
-                        value={formData.birthDate}
+                        name="birthday"
+                        value={formData.birthday}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="gender">
@@ -239,6 +476,7 @@ export default function Profile() {
                         name="gender"
                         value={formData.gender}
                         onChange={handleChange}
+                        required
                       >
                         <option value="">-</option>
                         <option value="male">Male</option>
@@ -255,7 +493,32 @@ export default function Profile() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      required
                     />
+                  </li>
+                  <li className="state-zip">
+                    <div className="state">
+                      <label htmlFor="state">State</label>
+                      <input
+                        type="text"
+                        id="state"
+                        name="state"
+                        value={formData.state}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="zip">
+                      <label htmlFor="zip">Zip</label>
+                      <input
+                        type="text"
+                        id="zip"
+                        name="zip"
+                        value={formData.zip}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
                   </li>
                   <li className="country-city">
                     <div className="country">
@@ -266,6 +529,7 @@ export default function Profile() {
                         name="country"
                         value={formData.country}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="city">
@@ -276,6 +540,7 @@ export default function Profile() {
                         name="city"
                         value={formData.city}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </li>
@@ -287,11 +552,16 @@ export default function Profile() {
                       name="address"
                       value={formData.address}
                       onChange={handleChange}
+                      required
                     />
                   </li>
                 </ul>
                 <div className="button-container">
-                  <button type="button" className="cancel-change-button">
+                  <button
+                    type="button"
+                    className="cancel-change-button"
+                    onClick={handleCancelChanges}
+                  >
                     Cancel changes
                   </button>
                   <button type="submit" className="save-change-button">

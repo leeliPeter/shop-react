@@ -1,6 +1,7 @@
 /* #region home page */
 .home{
     height: auto;
+    z-index: 0;
 }
 /* .home .home-banner{
     height: 600px;
@@ -21,6 +22,7 @@
     align-items: center;
     margin-left: 50px;
     text-shadow: 0 0 1px #ffffff;
+    font-weight: 600;
 }
 .home .container>ul{
     display: flex;
@@ -46,13 +48,37 @@
 }
 .home .container>ul li img{
     width: 100%;
+    height: auto;
+    max-width: 100%;
+    aspect-ratio: 1/1; /* Ensure a square aspect ratio */
+    object-fit: contain; /* Ensure the image is contained within the square */
+    background-color: white; /* Fill the sides with white */
 }
 .home .container>ul li .description{
     width: 90%;
+    padding: 20px 20px;
     padding: 10px;
     height: 75px;
+    padding-bottom: 30px;
 }
 .home .container>ul li .description div{
     margin: 10px 0;
+}
+.home .container>ul li .description .product-brand{
+    font-size: 21px;
+    font-weight: 600;
+}
+.home .container>ul li .description .product-name{
+    font-size: 18px;
+}
+.home .container>ul li .description .abandonedPrice{
+    text-decoration: line-through;
+    color: #707070;
+    font-size: 17px;
+}
+.home .container>ul li .description .discountPrice{
+    color: rgb(164, 32, 32);
+    font-size: 20px;
+    margin-left: 20px;
 }
 /* #endregion home page */

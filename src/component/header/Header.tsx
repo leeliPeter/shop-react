@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { products } from "../../ts/type";
+import { useAppSelector } from "../../Redux/hooks";
 import "./header.css";
 
 const Header: React.FC = () => {
+  const products = useAppSelector((state) => state.products.products); // Access products from Redux state
   const location = useLocation();
   console.log(location.pathname);
   const renderGuide = () => {
@@ -134,14 +135,14 @@ const Header: React.FC = () => {
 
     if (menCategory && womenCategory && menSecondMenu && womenSecondMenu) {
       const handleMenCategoryMouseOver = () => {
-        menSecondMenu.style.height = "135px";
+        menSecondMenu.style.height = "160px";
         menSecondMenu.style.padding = "10px";
         womenSecondMenu.style.height = "0";
         womenSecondMenu.style.padding = "0";
       };
 
       const handleWomenCategoryMouseOver = () => {
-        womenSecondMenu.style.height = "135px";
+        womenSecondMenu.style.height = "160px";
         womenSecondMenu.style.padding = "10px";
         menSecondMenu.style.height = "0";
         menSecondMenu.style.padding = "0";
@@ -213,7 +214,9 @@ const Header: React.FC = () => {
           <Link to="/">
             <img className="logo" src="/images/146855.png" alt="Logo" />
           </Link>
-          <div className="shop-name">MyShop</div>
+          <Link to="/">
+            <div className="shop-name">Peter's Shop</div>
+          </Link>
           <nav>
             <ul>
               <li>
@@ -248,6 +251,11 @@ const Header: React.FC = () => {
                     <li>
                       <Link to="/products/mens/shoes" onClick={menClose}>
                         Shoes
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/products/mens/accessories" onClick={menClose}>
+                        Accessories
                       </Link>
                     </li>
                   </ul>
@@ -287,11 +295,19 @@ const Header: React.FC = () => {
                         Shoes
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        to="/products/womens/accessories"
+                        onClick={womenClose}
+                      >
+                        Accessories
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </li>
               <li>
-                <Link className="category-name" to="/products/fnb">
+                <Link className="category-name" to="/products/f&b">
                   F&B
                 </Link>
               </li>
@@ -305,240 +321,10 @@ const Header: React.FC = () => {
         </div>
       </header>
       <div className="guide">
-        <div className="container">
-          {renderGuide()}
-          {/* <ul>
-            <li className="iconfont icon-home" style={{ display: "flex" }}>
-              <div
-                style={{
-                  fontFamily:
-                    "Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif",
-                  marginLeft: "5px",
-                }}
-              >
-                <Link to="/">Home</Link>
-              </div>
-            </li>
-            <li>
-              <Link to="/products/mens">Men</Link>
-            </li>
-            <li>
-              <Link to="/products/mens/top">Top</Link>
-            </li>
-          </ul> */}
-        </div>
+        <div className="container">{renderGuide()}</div>
       </div>
     </>
   );
 };
 
 export default Header;
-
-// import React, { useEffect, useRef } from "react";
-// import { Link } from "react-router-dom";
-// import "./header.css";
-
-// const Header: React.FC = () => {
-//   const menCategoryRef = useRef<HTMLDivElement>(null);
-//   const womenCategoryRef = useRef<HTMLDivElement>(null);
-//   const menSecondMenuRef = useRef<HTMLDivElement>(null);
-//   const womenSecondMenuRef = useRef<HTMLDivElement>(null);
-
-//   const menClose = () => {
-//     const menSecondMenu = menSecondMenuRef.current;
-//     if (menSecondMenu) {
-//       menSecondMenu.style.height = "0";
-//       menSecondMenu.style.padding = "0";
-//     }
-//   };
-
-//   const womenClose = () => {
-//     const womenSecondMenu = womenSecondMenuRef.current;
-//     if (womenSecondMenu) {
-//       womenSecondMenu.style.height = "0";
-//       womenSecondMenu.style.padding = "0";
-//     }
-//   };
-//   useEffect(() => {
-//     const menCategory = menCategoryRef.current;
-//     const womenCategory = womenCategoryRef.current;
-//     const menSecondMenu = menSecondMenuRef.current;
-//     const womenSecondMenu = womenSecondMenuRef.current;
-
-//     if (menCategory && womenCategory && menSecondMenu && womenSecondMenu) {
-//       const handleMenCategoryMouseOver = () => {
-//         menSecondMenu.style.height = "135px";
-//         menSecondMenu.style.padding = "10px";
-//         womenSecondMenu.style.height = "0";
-//         womenSecondMenu.style.padding = "0";
-//       };
-
-//       const handleWomenCategoryMouseOver = () => {
-//         womenSecondMenu.style.height = "135px";
-//         womenSecondMenu.style.padding = "10px";
-//         menSecondMenu.style.height = "0";
-//         menSecondMenu.style.padding = "0";
-//       };
-
-//       const handleDocumentClick = (event: MouseEvent) => {
-//         if (
-//           menSecondMenu &&
-//           !menSecondMenu.contains(event.target as Node) &&
-//           !menCategory.contains(event.target as Node)
-//         ) {
-//           menSecondMenu.style.height = "0";
-//           menSecondMenu.style.padding = "0";
-//         }
-//         if (
-//           womenSecondMenu &&
-//           !womenSecondMenu.contains(event.target as Node) &&
-//           !womenCategory.contains(event.target as Node)
-//         ) {
-//           womenSecondMenu.style.height = "0";
-//           womenSecondMenu.style.padding = "0";
-//         }
-//       };
-
-//       menCategory.addEventListener("mouseover", handleMenCategoryMouseOver);
-//       womenCategory.addEventListener("mouseover", handleWomenCategoryMouseOver);
-//       document.addEventListener("click", handleDocumentClick);
-
-//       return () => {
-//         menCategory.removeEventListener(
-//           "mouseover",
-//           handleMenCategoryMouseOver
-//         );
-//         womenCategory.removeEventListener(
-//           "mouseover",
-//           handleWomenCategoryMouseOver
-//         );
-//         document.removeEventListener("click", handleDocumentClick);
-//       };
-//     }
-//   }, []);
-
-//   return (
-//     <>
-//       <header>
-//         <div className="container">
-//           <Link to="/">
-//             <img className="logo" src="/images/146855.png" alt="Logo" />
-//           </Link>
-//           <div className="shop-name">MyShop</div>
-//           <nav>
-//             <ul>
-//               <li>
-//                 <div
-//                   ref={menCategoryRef}
-//                   className="men-category category-name"
-//                 >
-//                   <Link to="/products/mens" onClick={menClose}>
-//                     Men
-//                   </Link>
-//                 </div>
-//                 <div
-//                   ref={menSecondMenuRef}
-//                   className="men-second-menu second-menu"
-//                 >
-//                   <ul>
-//                     <li>
-//                       <Link to="/products/mens" onClick={menClose}>
-//                         All
-//                       </Link>
-//                     </li>
-//                     <li>
-//                       <Link to="/products/mens/top" onClick={menClose}>
-//                         Top
-//                       </Link>
-//                     </li>
-//                     <li>
-//                       <Link to="/products/mens/bottom" onClick={menClose}>
-//                         Bottom
-//                       </Link>
-//                     </li>
-//                     <li>
-//                       <Link to="/products/mens/shoes" onClick={menClose}>
-//                         Shoes
-//                       </Link>
-//                     </li>
-//                   </ul>
-//                 </div>
-//               </li>
-//               <li>
-//                 <div
-//                   ref={womenCategoryRef}
-//                   className="women-category category-name"
-//                 >
-//                   {/* Women */}
-//                   <Link to="/products/womens" onClick={womenClose}>
-//                     Women
-//                   </Link>
-//                 </div>
-//                 <div
-//                   ref={womenSecondMenuRef}
-//                   className="women-second-menu second-menu"
-//                 >
-//                   <ul>
-//                     <li>
-//                       <Link to="/products/womens" onClick={womenClose}>
-//                         All
-//                       </Link>
-//                     </li>
-//                     <li>
-//                       <Link to="/products/womens/top" onClick={womenClose}>
-//                         Top
-//                       </Link>
-//                     </li>
-//                     <li>
-//                       <Link to="/products/womens/bottom" onClick={womenClose}>
-//                         Bottom
-//                       </Link>
-//                     </li>
-//                     <li>
-//                       <Link to="/products/womens/shoes" onClick={womenClose}>
-//                         Shoes
-//                       </Link>
-//                     </li>
-//                   </ul>
-//                 </div>
-//               </li>
-//               <li>
-//                 {/* <div className="category-name">F&B</div> */}
-//                 <Link className="category-name" to="/products/fnb">
-//                   F&B
-//                 </Link>
-//               </li>
-//               <li>
-//                 {/* <div className="category-name">Others</div> */}
-//                 <Link className="category-name" to="/products/others">
-//                   Others
-//                 </Link>
-//               </li>
-//             </ul>
-//           </nav>
-//         </div>
-//       </header>
-//       <div className="guide">
-//         <div className="container">
-//           <ul>
-//             <li className="iconfont icon-home" style={{ display: "flex" }}>
-//               <div
-//                 style={{
-//                   fontFamily:
-//                     "Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif",
-//                   marginLeft: "5px",
-//                 }}
-//               >
-//                 Home
-//               </div>
-//             </li>
-//             <li>Men</li>
-//             <li>Top</li>
-//           </ul>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Header;

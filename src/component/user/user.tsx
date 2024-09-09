@@ -1,18 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import { products, Product } from "../../ts/type";
+import { Product } from "../../ts/type";
 import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
 import { updateCart } from "../../Redux/userInfoSlice";
+import { RootState } from "../../Redux/store";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./user.css";
 
 const User: React.FC = () => {
   const { cart } = useAppSelector((state) => state.userInfo);
+  const userInfo = useSelector((state: RootState) => state.userInfo);
+  const products = useAppSelector((state) => state.products.products); // Access products from Redux state
+  const isLogin = useAppSelector((state) => state.isLogin);
   const dispatch = useAppDispatch();
 
   const cartIconRef = useRef<HTMLSpanElement>(null);
   const cartContainerRef = useRef<HTMLDivElement>(null);
 
-  // State to manage quantity reminders
   const [quantityReminders, setQuantityReminders] = useState<boolean[]>([]);
 
   useEffect(() => {
@@ -21,8 +25,16 @@ const User: React.FC = () => {
 
     if (cartIcon && cartContainer) {
       const handleCartIconClick = () => {
-        cartContainer.style.padding = "20px";
-        cartContainer.style.height = "550px";
+        if (
+          cartContainer.style.height === "0px" ||
+          cartContainer.style.height === ""
+        ) {
+          cartContainer.style.padding = "20px";
+          cartContainer.style.height = "550px";
+        } else {
+          cartContainer.style.padding = "0";
+          cartContainer.style.height = "0";
+        }
       };
 
       const handleDocumentClick = (event: MouseEvent) => {
@@ -73,16 +85,14 @@ const User: React.FC = () => {
           quantity: item.quantity + 1,
         };
 
-        // Clear reminder if quantity is less than max
         const newReminders = [...quantityReminders];
-        newReminders[index] = false; // Hide reminder
+        newReminders[index] = false;
 
         setQuantityReminders(newReminders);
         dispatch(updateCart(newCart));
       } else {
-        // Show reminder if quantity is at max
         const newReminders = [...quantityReminders];
-        newReminders[index] = true; // Show reminder
+        newReminders[index] = true;
 
         setQuantityReminders(newReminders);
       }
@@ -99,30 +109,34 @@ const User: React.FC = () => {
         quantity: item.quantity - 1,
       };
 
-      // Clear reminder if quantity is less than max
       const product = getProductById(item.product.productId);
       const maxQuantity =
         product?.quantity.find((q) => q.size === item.size)?.quantity || 0;
 
       const newReminders = [...quantityReminders];
       if (item.quantity - 1 < maxQuantity) {
-        newReminders[index] = false; // Hide reminder
+        newReminders[index] = false;
       }
 
       setQuantityReminders(newReminders);
       dispatch(updateCart(newCart));
     }
   };
-  // Function to remove an item from the cart
+
   const removeItem = (index: number) => {
     const newCart = cart.filter((_, i) => i !== index);
     dispatch(updateCart(newCart));
-  };
 
-  const totalCost = cart.reduce(
-    (total, item) => total + item.product.price * item.quantity,
-    0
-  );
+    const newReminders = quantityReminders.filter((_, i) => i !== index);
+    setQuantityReminders(newReminders);
+  };
+  console.log(cart);
+  const totalCost = cart.reduce((total, item) => {
+    const itemPrice = item.product.discount
+      ? item.product.price * item.product.discount
+      : item.product.price;
+    return total + itemPrice * item.quantity;
+  }, 0);
 
   return (
     <div className="user">
@@ -133,9 +147,17 @@ const User: React.FC = () => {
         >
           <span className="cart-number">{cart.length}</span>
         </span>
-        <Link to="/login">
-          <span className="iconfont icon-user logo"></span>
-        </Link>
+        {isLogin ? (
+          <Link to="/profile">
+            <div className="user-icon">
+              {userInfo.name.charAt(0).toUpperCase()}
+            </div>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <span className="iconfont icon-user logo"></span>
+          </Link>
+        )}
         <div ref={cartContainerRef} className="cart-container">
           {cart.length === 0 ? (
             <div className="empty-cart-message">
@@ -160,8 +182,22 @@ const User: React.FC = () => {
                           <div className="product-name">
                             {item.product.name}
                           </div>
-                          <div className="product-price">
-                            ${item.product.price}
+                          <div>
+                            {item.product.discount > 0 && (
+                              <span className="discount-price">
+                                $
+                                {(item.product.price * item.product.discount) // Adjusted to reflect discounted price
+                                  .toFixed(2)}
+                              </span>
+                            )}
+
+                            <span
+                              className={`product-price ${
+                                item.product.discount ? "abandoned-price" : ""
+                              }`}
+                            >
+                              ${item.product.price}
+                            </span>
                           </div>
                         </div>
                         <div className="category">{item.product.category}</div>
@@ -215,82 +251,3 @@ const User: React.FC = () => {
 };
 
 export default User;
-
-{
-  /* <ul className="popup-menu-items">
-          <li>
-            <div className="category phone-nav-men">
-              Men
-              <div className="menSwitchIcon iconfont icon-add icon-minus"></div>
-            </div>
-          </li>
-          <li className="items men-items">
-            <ul>
-              <li>
-                <Link to="/products/mens" onClick={closeMenu}>
-                  All
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/mens/top" onClick={closeMenu}>
-                  Top
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/mens/bottom" onClick={closeMenu}>
-                  Bottom
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/mens/shoes" onClick={closeMenu}>
-                  Shoes
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <div className="category phone-nav-women">
-              <div>Women</div>
-              <div className="womenSwitchIcon iconfont icon-add icon-minus"></div>
-            </div>
-          </li>
-          <li className="items women-items">
-            <ul>
-              <li>
-                <Link to="/products/womens" onClick={closeMenu}>
-                  All
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/womens/top" onClick={closeMenu}>
-                  Top
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/womens/bottom" onClick={closeMenu}>
-                  Bottom
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/womens/shoes" onClick={closeMenu}>
-                  Shoes
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <Link to="/products/fnb" onClick={closeMenu}>
-              <div className="category">
-                <div>F&B</div>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/products/others" onClick={closeMenu}>
-              <div className="category">
-                <div>Others</div>
-              </div>
-            </Link>
-          </li>
-        </ul> */
-}

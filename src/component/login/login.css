@@ -3,6 +3,7 @@
     margin: 0 auto;
  margin-bottom: 50px;
  height: 650px;
+ margin-top: -30px;
 }
 .login-reg .login-reg-button{
     margin: 0 auto;
@@ -32,6 +33,23 @@
     background-color: #ffffff;
     color: black;
 }
+.login-reg-reminder {
+    text-align: center;
+    height: 50px;
+    line-height: 70px;
+    font-size: 20px;
+    display: none;
+}
+
+.login-reg-reminder.success {
+    color: green;
+    display: block;
+}
+
+.login-reg-reminder.error {
+    color: red;
+    display: block;
+} 
 .reg-login-form {
     margin-top: 30px;
     text-align: center;
@@ -102,7 +120,28 @@ input[type="submit"]:active{
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 27px;
+    position: relative;
+
 }
+
+/* Container for the Google login button to handle z-index */
+.google-login-btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+  }
+/* all children */
+.google-login-btn > * {
+    /* width: 600px; */
+    transform: scaleX(5);
+
+  }
+
 .google-reg:hover{
     background-color: #000;
     color: white;
@@ -133,7 +172,7 @@ input[type="submit"]:active{
     right: 0;
     left: 0;
     margin: auto;
-    top: 310px;
+    top: 300px;
 }
 .login-form {
     position: absolute;
@@ -144,7 +183,7 @@ input[type="submit"]:active{
     right: 0;
     left: 0;
     margin: auto;
-    top: 310px;
+    top: 300px;
     pointer-events: none;
 }
 /* #endregion login-reg */

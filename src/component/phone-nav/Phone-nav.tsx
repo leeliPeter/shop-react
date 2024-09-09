@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
-import { Product, products } from "../../ts/type";
 import { updateCart } from "../../Redux/userInfoSlice";
 import "./phone-nav.css";
 
 export default function PhoneNav() {
   const { cart } = useAppSelector((state) => state.userInfo);
+  const isLogin = useAppSelector((state) => state.isLogin);
+  const userInfo = useAppSelector((state) => state.userInfo);
+  const products = useAppSelector((state) => state.products.products); // Access products from Redux state
   const dispatch = useAppDispatch();
   const [quantityReminders, setQuantityReminders] = useState<boolean[]>([]);
 
@@ -72,11 +74,11 @@ export default function PhoneNav() {
 
     phoneNavMen?.addEventListener("click", function () {
       menSwitchIcon.classList.toggle("icon-add");
-      if (menItem.style.height === "110px") {
+      if (menItem.style.height === "170px") {
         menItem.style.height = "0";
         menItem.style.padding = "0 30px";
       } else {
-        menItem.style.height = "110px";
+        menItem.style.height = "170px";
         menItem.style.padding = "5px 30px";
         womenSwitchIcon.classList.add("icon-add");
         womenItem.style.height = "0";
@@ -86,11 +88,11 @@ export default function PhoneNav() {
 
     phoneNavWomen?.addEventListener("click", function () {
       womenSwitchIcon.classList.toggle("icon-add");
-      if (womenItem.style.height === "110px") {
+      if (womenItem.style.height === "170px") {
         womenItem.style.height = "0";
         womenItem.style.padding = "0 30px";
       } else {
-        womenItem.style.height = "110px";
+        womenItem.style.height = "170px";
         womenItem.style.padding = "5px 30px";
         menSwitchIcon.classList.add("icon-add");
         menItem.style.height = "0";
@@ -195,7 +197,10 @@ export default function PhoneNav() {
     );
     dispatch(updateCart(updatedCart));
   };
-
+  const handleIconUser = () => {
+    closeMenu();
+    closeCart();
+  };
   return (
     <div className="phone-nav">
       <div className="container">
@@ -203,10 +208,17 @@ export default function PhoneNav() {
           <span className="cart-quantity">{cart.length}</span>
         </span>
         <span className="iconfont icon-close phone-close-cart hide"></span>
-        <Link to="/login" onClick={handleLoginBtn}>
-          <span className="iconfont icon-user"></span>
-        </Link>
-
+        {!isLogin ? (
+          <Link to="/login" onClick={handleLoginBtn}>
+            <span className="iconfont icon-user"></span>
+          </Link>
+        ) : (
+          <Link to="/profile" onClick={handleIconUser}>
+            <div className="user-icon">
+              {userInfo.name ? userInfo.name.charAt(0).toUpperCase() : ""}
+            </div>
+          </Link>
+        )}
         <span className="iconfont icon-more_ phone-show-menu"></span>
         <span className="iconfont icon-close phone-close-menu hide"></span>
       </div>
@@ -240,6 +252,11 @@ export default function PhoneNav() {
                   Shoes
                 </Link>
               </li>
+              <li>
+                <Link to="/products/mens/accessories" onClick={closeMenu}>
+                  Accessories
+                </Link>
+              </li>
             </ul>
           </li>
           <li>
@@ -270,10 +287,15 @@ export default function PhoneNav() {
                   Shoes
                 </Link>
               </li>
+              <li>
+                <Link to="/products/womens/accessories" onClick={closeMenu}>
+                  Accessories
+                </Link>
+              </li>
             </ul>
           </li>
           <li>
-            <Link to="/products/fnb" onClick={closeMenu}>
+            <Link to="/products/f&b" onClick={closeMenu}>
               <div className="category">
                 <div>F&B</div>
               </div>
@@ -312,11 +334,25 @@ export default function PhoneNav() {
                     <div className="product-info">
                       <div className="name-price">
                         <div className="product-name">{item.product.name}</div>
-                        <div className="product-price">
+                        <div
+                          className={`product-price ${
+                            item.product.discount ? "abandoned-price" : ""
+                          }`}
+                        >
                           ${item.product.price}
                         </div>
                       </div>
-                      <div className="category">{item.product.category}</div>
+                      <div className="category-discount-price">
+                        <div className="category">{item.product.category}</div>
+                        {item.product.discount > 0 && (
+                          <span className="discount-price">
+                            $
+                            {(item.product.price * item.product.discount) // Adjusted to reflect discounted price
+                              .toFixed(2)}
+                          </span>
+                        )}
+                      </div>
+                      {/* <div className="category">{item.product.category}</div> */}
                       <div className="size">
                         {item.size}{" "}
                         {quantityReminders[index] ? (
@@ -371,11 +407,12 @@ export default function PhoneNav() {
                   <div>
                     $
                     {cart
-                      .reduce(
-                        (total, item) =>
-                          total + item.product.price * item.quantity,
-                        0
-                      )
+                      .reduce((total, item) => {
+                        const discountedPrice = item.product.discount
+                          ? item.product.price * item.product.discount
+                          : item.product.price;
+                        return total + discountedPrice * item.quantity;
+                      }, 0)
                       .toFixed(2)}
                   </div>
                 </div>
