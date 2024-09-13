@@ -62,7 +62,6 @@ const responsive = {
 
 export default function HomeCarousel() {
   const homeImages = useAppSelector((state) => state.homeImages.homeImages); // Access homeImages from Redux store
-  console.log("Carousel images:", homeImages);
   return (
     <div className="home-carousel">
       <Carousel

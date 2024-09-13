@@ -1,6 +1,6 @@
 // userInfoSlice.ts
 import { createSlice, PayloadAction, Draft, Middleware } from '@reduxjs/toolkit';
-import { Cart, OrderHistory, UserInfo,Order } from '../ts/type';
+import { Cart, OrderHistory, UserInfo,Order,url } from '../ts/type';
 
 // Initial state defaults
 const defaultState: UserInfo = {
@@ -53,7 +53,7 @@ export const updateUserInfoOnBackend = async (userInfo: UserInfo) => {
         // Exclude userId from updatedInfo
         const { userId, ...updatedInfo } = userInfo;
         
-        const response = await fetch("http://localhost:3001/user-update", {
+        const response = await fetch(`${url}/user-update`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export const updateUserInfoOnBackend = async (userInfo: UserInfo) => {
             const errorText = await response.text(); // Get response text for debugging
             console.error('Error details:', errorText);
         } else {
-            console.log('User info updated successfully');
+            // console.log('User info updated successfully');
         }
     } catch (error) {
         console.error('Error updating user info on backend:', error);
@@ -161,7 +161,7 @@ const userInfoSlice = createSlice({
 // Async thunk to initialize user info
 export const checkUserStatus = async (dispatch: any) => {
     try {
-        const response = await fetch("http://localhost:3001/user/current-user", {
+        const response = await fetch(`${url}/user/current-user`, {
             method: "GET",
             credentials: "include",
         });
@@ -169,7 +169,6 @@ export const checkUserStatus = async (dispatch: any) => {
         if (response.ok) {
             const data = await response.json();
             if (data.userId) {
-                console.log("has session data", data);
                 dispatch(setUserInfo(data));
                 dispatch(login()); // Set isLogin to true
                 return true;

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { HomeImages } from '../ts/type'; // Adjust the path as necessary
+import { url, HomeImages } from '../ts/type'; // Adjust the path as necessary
 
 interface HomeImageState {
     homeImages: HomeImages;
@@ -37,7 +37,7 @@ const homeImageSlice = createSlice({
 export const fetchHomeImages = () => async (dispatch: any) => {
     dispatch(fetchHomeImagesStart());
     try {
-        const response = await fetch("http://localhost:3001/get-product/home-images", {
+        const response = await fetch(`${url}/get-product/home-images`, {
             method: "GET",
             credentials: "include",
         });
@@ -45,7 +45,6 @@ export const fetchHomeImages = () => async (dispatch: any) => {
             throw new Error('Failed to fetch home images');
         }
         const data = await response.json();
-        console.log("home images:", data);
         dispatch(fetchHomeImagesSuccess(data));
     } catch (error: any) {
         dispatch(fetchHomeImagesFailure(error.message));

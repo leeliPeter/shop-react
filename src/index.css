@@ -60,9 +60,9 @@ body{
 }
 @media screen and (max-width:1600px){
 
-    .product-detail .container .product-description .product-info p {
+    /* .product-detail .container .product-description .product-info p {
         font-size: 17px;
-    }
+    } */
 }
 @media screen and (max-width:1350px){
     .container{
@@ -74,13 +74,13 @@ body{
         margin-left: 10px;
     }
     header nav>ul li .category-name{
-        font-size: 130%;
+        /* font-size: 130%; */
     }
     header nav .second-menu{
         width: 100px;
     }
     header nav .second-menu ul li{
-        font-size: 120%;
+        /* font-size: 120%; */
     }
     header nav>ul li{
         margin-right: 20%;}
@@ -108,7 +108,7 @@ body{
     .profile .container{
         width: 75%;
     }
-    .profile .user-basic .greeting .hi div:first-child{
+    /* .profile .user-basic .greeting .hi div:first-child{
         font-size: 25px;
     }
     .profile .user-basic .greeting .hi div:last-child{
@@ -136,18 +136,18 @@ body{
     .profile .personal-info form {
         padding: 15px;
         font-size: 15px;
-      }
-    .profile .personal-info input[type="text"],
+      } */
+    /* .profile .personal-info input[type="text"],
     .profile .personal-info input[type="email"],
     .profile .personal-info input[type="tel"],
     .profile .personal-info input[type="date"],
     .profile .personal-info select {
-    font-size: 15px; /* Increased font size */
-    padding: 10px 3px; /* Increased padding */
+    font-size: 15px; 
+    padding: 10px 3px; 
     }
     .profile .personal-info button {
     font-size: 15px;
-    padding: 10px; }
+    padding: 10px; } */
 
     .check-out-page .title{
         font-size: 25px;
@@ -174,10 +174,10 @@ body{
         padding: 0 100px;}
 
     .reset .logo img{
-        width: 150px;
+        width: 100px;
     }
     .reset .logo .shopName {
-        font-size: 30px;
+        font-size: 16px;
         padding: 10px 20px;
     }
 
@@ -225,7 +225,9 @@ body{
     header nav>ul li{
         margin-right: 10%;}
 
-
+        .home{
+            overflow-x: hidden;
+        }
     /* .home .home-banner{
         height: 400px;
     } */
@@ -278,7 +280,7 @@ body{
         font-size: 15px;
     }
     main .container .show-more span{
-        width: 50px;
+        width: 20px;
         padding: 10px 15px;
         font-size: 20px;
         margin-top: 20px;
@@ -310,8 +312,14 @@ body{
         font-size: 20px;
     }
 
+    .product-detail .container {
+        height: auto;
+    }
+
+
     .product-detail .container .product-image{
         width: 100%;
+        margin-bottom: 300px;
     }
     .product-detail .container .product-image img{
         margin-left: 0;
@@ -320,21 +328,28 @@ body{
     }
     .product-detail .container .product-description{
         width: 100%;
+        height: auto;
+        margin-top: -300px;
     }
+    .product-detail .container .product-description>div{
+        margin-bottom: 20px;
+    }
+
     .product-detail .container .product-description .product-info p{
         font-size: 18px;
         padding: 0 0px
     }
     .product-detail .detail-btn{
         width: 70%;
-        margin-top: 20px;
+        
+        margin-top:-10px;
     }
     .product-detail .go-back-btn {
         display: none;
         width: 50%;
       }
       .product-detail .descriptionImg .container{
-        margin-top: 0px;}
+        margin-top: -20px;}
 
 
 
@@ -357,6 +372,9 @@ body{
     .reg-login-form form .subscribe p{
         width: 93%;
     }
+    .reg-login-form form .password-check{
+        width: 100%;
+    }
     input[type="submit"]{
         width: 100%
     }
@@ -376,11 +394,11 @@ body{
     }
     .profile .log-out.active {
         width: 100%;
-        font-size: 20px;
+        font-size: 16px;
         opacity: 1;
       }
       .profile .log-out .answer-btn div{
-        font-size: 17px;
+        font-size: 16px;
         width: 50px;
         height: 30px;
       }
@@ -391,7 +409,7 @@ body{
         width: 90%;
     }
     .profile .user-basic .greeting .hi div:first-child{
-        font-size: 22px;
+        font-size: 20px;
     }
     .profile .user-basic .greeting .hi div:last-child{
         font-size: 15px;
@@ -401,9 +419,9 @@ body{
         margin-left: 5px;
     }
     .profile .myaccount .account-title{
-        font-size: 20px;}
-    .profile .myaccount>.myaccount-nav>li{
         font-size: 18px;}
+    .profile .myaccount>.myaccount-nav>li{
+        font-size: 17px;}
     .profile .order-history .order-number{
         font-size: 15px;
     }
@@ -414,13 +432,13 @@ body{
         font-size: 16px;
     }
     .profile .myaccount>.myaccount-nav .profile-order{
-        font-size: 19px;
+        font-size: 17px;
       }
       .profile-personal-info .profileWord{
-        font-size: 19px;
+        font-size: 17px;
       }
       .profile .order-history .quantity-price .price .discount-price{
-        font-size: 19px;
+        font-size: 16px;
       }
 
     .profile .personal-info .edit{
@@ -500,8 +518,8 @@ body{
         width: 90px;
     }
     .reset .logo .shopName {
-        font-size: 23px;
-        padding: 10px 20px;
+        font-size: 16px;
+        padding: 10px 16px;
     }
     .reset form .inputBox input[type="password"] {
         width: 300px;
@@ -512,9 +530,10 @@ body{
 
     .payment .container{
         margin-bottom: 10px;
+        margin-top: -20px;
     }
     .payment .title{
-        font-size: 25px;
+        font-size: 23px;
         margin: 10px 0;
     }
     .payment .icon-container .line {
@@ -524,7 +543,7 @@ body{
         font-size: 35px;}
     .payment .icon-container .shipping div:first-child,
     .payment .icon-container .payment div:first-child{
-        font-size: 17px;
+        font-size: 16px;
         margin-bottom: 5px;
         margin-top: 15px;
         width: 30px;
@@ -543,7 +562,7 @@ body{
     .payment .cart{
         width: 100%;
         box-sizing: border-box;
-        font-size: 17px;
+        font-size: 16px;
         padding: 10px 15px;
     }
     .payment .cart>div{
@@ -551,15 +570,15 @@ body{
     .payment .cart ul{
         height: 200px;}
         .payment .cart ul li{
-            font-size: 16px;
+            font-size: 15px;
         }
 
 
         .payment .confirm-info .personal-info {
         margin-top: 0px;
-        font-size: 17px;
-        padding: 10px;
-        padding-left: 15px;
+        font-size: 16px;
+        padding: 20px ;
+        padding-left: 20px;
          width: 100% !important; 
     }
     .payment .confirm-info .personal-info li{
@@ -579,14 +598,14 @@ body{
 
 
     .payment .next-step-title{
-        font-size: 20px;
+        font-size: 18px;
         margin: 0;
     }
     .payment .next-step .line {
         width: 100px;
     }
     .payment .next-step .sentence {
-        font-size: 20px;
+        font-size: 17px;
         line-height: 1.8;
         color: #333;
         background-color: transparent;

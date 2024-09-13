@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../ts/type'; // Adjust the path as necessary
+import { Product,url } from '../ts/type'; // Adjust the path as necessary
 
 interface ProductState {
     products: Product[];
@@ -37,7 +37,7 @@ const productSlice = createSlice({
 export const fetchProducts = () => async (dispatch: any) => {
     dispatch(fetchProductsStart());
     try {
-        const response = await fetch("http://localhost:3001/get-product/products", {
+        const response = await fetch(`${url}/get-product/products`, {
             method: "GET",
             credentials: "include",
         });
@@ -45,7 +45,6 @@ export const fetchProducts = () => async (dispatch: any) => {
             throw new Error('Failed to fetch products');
         }
         const data = await response.json();
-        console.log("slice data",data);
         dispatch(fetchProductsSuccess(data));
     } catch (error: any) {
         dispatch(fetchProductsFailure(error.message));

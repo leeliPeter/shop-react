@@ -50,13 +50,14 @@
 }
 .check-out-page .check-out-form .check-out-logo .shipping-logo{
     color: black;
+    font-size: 16px;
 }
 .check-out-page .check-out-form .check-out-logo .shipping-logo .logo{
     background-color: #000;
 }
 
 .check-out-page .title{
-    font-size: 30px;
+    font-size: 20px;
     margin-bottom: 30px;
     /* margin-left: 40px; */
     color: #000;
@@ -66,7 +67,7 @@
     /* display: flex; */
     /* margin: 0 auto; */
     flex-direction: column;
-    width: 70%;
+    width: 80%;
     /* max-width: 400px; */
     /* border: 1px solid #ccc; */
     border-radius: 5px;
@@ -74,15 +75,15 @@
   }
   
   .check-out-page .check-out-form legend {
-    font-size: 1em;
+    font-size: 16px;
     margin-bottom: 5px;
     color: #333;
   }
   
   .check-out-page .check-out-form input {
     margin-bottom: 15px;
-    padding: 10px;
-    font-size: 1em;
+    padding: 7px 10px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
@@ -115,8 +116,8 @@
 
   .check-out-page .check-out-form .next-step {
     width: 100%;
-    padding: 15px 20px;
-    font-size: 1em;
+    padding: 10px 15px;
+    font-size: 16px;
     color: #fff;
     background-color: #000000;
     border: none;
@@ -136,7 +137,7 @@
     box-sizing: border-box;
 }
 .check-out-page .cart-title{
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 20px;
     color: #000;
 }
@@ -173,11 +174,12 @@
 }
 .check-out-page .discount-price{
     color: rgb(164, 32, 32);
-    font-size: 18px;
+    font-size: 16px;
 }
 .check-out-page .abandoned-price{
     text-decoration: line-through;
     color: #707070;
+    font-size: 15px;
 }
 .check-out-page .quantity-button{
     display: flex;
@@ -233,7 +235,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 23px;
+    font-size: 20px;
     padding: 10px 20px;
     cursor: pointer;
 }
@@ -280,11 +282,12 @@
 }
 .check-out-page .phone-cart .discount-price{
     color: rgb(164, 32, 32);
-    font-size: 18px;
+    font-size: 16px;
 }
 .check-out-page .phone-cart .abandoned-price{
     text-decoration: line-through;
     color: #707070;
+    font-size: 15px;
 }
 .check-out-page .phone-cart  .quantity-button{
     display: flex;

@@ -1,6 +1,7 @@
 import "./forgotPwd.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { url } from "../../ts/type";
 
 export default function ForgotPwd() {
   const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ export default function ForgotPwd() {
 
   const handleResetPassword = async (email: string) => {
     try {
-      const response = await fetch("http://localhost:3001/reset-password", {
+      const response = await fetch(`${url}/reset-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,7 +23,6 @@ export default function ForgotPwd() {
       }
 
       const result = await response.json();
-      console.log(result.message);
 
       setReminderMessage(result.message);
       setEmailSent(true); // Set emailSent to true if successful

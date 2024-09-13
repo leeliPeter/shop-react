@@ -14,7 +14,7 @@ footer .container{
 .footer-logo{
     margin-right:10px;}
 .footer-logo img{
-    width: 65px;
+    width: 45px;
 }
 
 .footer-text p{
@@ -22,7 +22,7 @@ footer .container{
     display: flex;
     align-items: center;
     line-height: 20px;
-    font-size: 18px;
+    font-size: 15px;
 }
 .footer-text p a{
     color: white;
@@ -30,7 +30,7 @@ footer .container{
     align-items: center;
 }
 .footer-text img{
-    width: 20px;
+    width: 18px;
     margin-right: 10px;
 }
 
@@ -45,13 +45,13 @@ footer .shop-name{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     letter-spacing: 3px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    font-size: 15px;
+    font-size: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 160px;
     margin-left: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     /* padding: 10px 20px; */
     /* margin-left: 25px; */
 }

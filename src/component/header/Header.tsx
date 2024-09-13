@@ -6,7 +6,6 @@ import "./header.css";
 const Header: React.FC = () => {
   const products = useAppSelector((state) => state.products.products); // Access products from Redux state
   const location = useLocation();
-  console.log(location.pathname);
   const renderGuide = () => {
     // If pathname is "/", only return Home
     if (location.pathname === "/") {
@@ -135,15 +134,17 @@ const Header: React.FC = () => {
 
     if (menCategory && womenCategory && menSecondMenu && womenSecondMenu) {
       const handleMenCategoryMouseOver = () => {
-        menSecondMenu.style.height = "160px";
-        menSecondMenu.style.padding = "10px";
+        menSecondMenu.style.height = "130px";
+        menSecondMenu.style.padding = "0 10px";
+        menSecondMenu.style.paddingBottom = "10px";
         womenSecondMenu.style.height = "0";
         womenSecondMenu.style.padding = "0";
       };
 
       const handleWomenCategoryMouseOver = () => {
-        womenSecondMenu.style.height = "160px";
-        womenSecondMenu.style.padding = "10px";
+        womenSecondMenu.style.height = "130px";
+        womenSecondMenu.style.padding = "0 10px";
+        womenSecondMenu.style.paddingBottom = "10px";
         menSecondMenu.style.height = "0";
         menSecondMenu.style.padding = "0";
       };

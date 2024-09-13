@@ -19,6 +19,7 @@ export default function Home() {
   return (
     <div className="home">
       <HomeCarousel />
+
       <div className="container">
         <div className="new-arrival">New arrivals</div>
         <ul>

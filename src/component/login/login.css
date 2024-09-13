@@ -1,8 +1,8 @@
 /* #region login-reg*/
 .login-reg .container{
     margin: 0 auto;
- margin-bottom: 50px;
- height: 650px;
+ margin-bottom: 10px;
+ height: 750px;
  margin-top: -30px;
 }
 .login-reg .login-reg-button{
@@ -11,15 +11,15 @@
     justify-content: space-between;
     align-items: center;
     background-color: #707070;
-    width: 600px;
-    font-size: 17px;
+    width: 500px;
+    font-size: 16px;
     border-radius: 50px;
 }
 .reg-button, .login-button{
     width: 50%;
     text-align: center;
     border-radius: 50px;
-    padding: 15px 20px;
+    padding: 12px 10px;
     color: white;
     cursor: pointer;
 }
@@ -37,7 +37,7 @@
     text-align: center;
     height: 50px;
     line-height: 70px;
-    font-size: 20px;
+    font-size: 17px;
     display: none;
 }
 
@@ -51,7 +51,7 @@
     display: block;
 } 
 .reg-login-form {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     text-align: center;
     position: relative;
     width: 100%;
@@ -65,7 +65,7 @@
     background-color: #f9f9f9;
 }
 .reg-login-form form .form-title{
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 10px;
 }
 input[type="password"],
@@ -77,6 +77,24 @@ input[type="email"]{
   border-radius: 5px;
   box-sizing: border-box;
 }
+
+.reg-login-form form .password-check{
+    width: 50%;
+    margin: 0 auto;
+    overflow-y: hidden;
+    height: 0;
+    transition: height 0.5s;
+    /* background-color: red; */
+}
+.reg-login-form form .password-check ol li{
+    text-align: start;
+    margin: 10px 20px;
+    list-style-type:disc;
+}
+
+
+
+
 .reg-login-form form .subscribe{
     display: flex;
     justify-content: center;
@@ -172,7 +190,7 @@ input[type="submit"]:active{
     right: 0;
     left: 0;
     margin: auto;
-    top: 300px;
+    top: 250px;
 }
 .login-form {
     position: absolute;
@@ -183,7 +201,7 @@ input[type="submit"]:active{
     right: 0;
     left: 0;
     margin: auto;
-    top: 300px;
+    top: 250px;
     pointer-events: none;
 }
 /* #endregion login-reg */

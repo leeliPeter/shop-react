@@ -18,7 +18,6 @@ export default function Main() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [isEmpty, setIsEmpty] = useState(false);
 
-  // Ref to control the filter-options element
   const filterRef = useRef<HTMLDivElement>(null);
   const filterContainerRef = useRef<HTMLDivElement>(null);
   const [filterExpanded, setFilterExpanded] = useState(false);
@@ -40,21 +39,19 @@ export default function Main() {
     window.scrollTo(0, 0);
   }, [category, position, products]);
 
-  // Function to toggle the filter options
   const toggleFilter = () => {
     if (filterRef.current) {
       if (!filterExpanded) {
-        filterRef.current.style.height = "190px"; // Expand to 200px
+        filterRef.current.style.height = "190px";
         filterRef.current.style.color = "rgb(93, 65, 65)";
       } else {
-        filterRef.current.style.height = "0"; // Collapse back to 0
+        filterRef.current.style.height = "0";
         filterRef.current.style.color = "rgb(246, 218, 186)";
       }
-      setFilterExpanded(!filterExpanded); // Toggle the expanded state
+      setFilterExpanded(!filterExpanded);
     }
   };
 
-  // Function to handle clicking outside the filter to close it
   const handleClickOutside = (e: MouseEvent) => {
     if (
       filterContainerRef.current &&
@@ -62,31 +59,38 @@ export default function Main() {
       !filterContainerRef.current.contains(e.target as Node) &&
       !filterRef.current.contains(e.target as Node)
     ) {
-      closeFilter(); // Close the filter if clicked outside both elements
+      closeFilter();
     }
   };
 
-  // Close filter function
   const closeFilter = () => {
     if (filterRef.current) {
-      filterRef.current.style.height = "0"; // Collapse back to 0
+      filterRef.current.style.height = "0";
       filterRef.current.style.color = "rgb(246, 218, 186)";
     }
-    setFilterExpanded(false); // Set the state to collapsed
+    setFilterExpanded(false);
   };
 
-  // Close the filter when clicking one of the filter items
   const handleFilterClick = (option: string) => {
-    let sortedProducts = [...filteredProducts]; // Copy the current products list
+    let sortedProducts = [...filteredProducts];
 
     switch (option) {
-      case "Price":
-        sortedProducts = sortedProducts.sort(
-          (a, b) => b.price - a.price // Sort by price (high to low)
-        );
+      case "PriceUp":
+        sortedProducts.sort((a, b) => {
+          const priceA = a.discount ? a.price * a.discount : a.price;
+          const priceB = b.discount ? b.price * b.discount : b.price;
+          return priceB - priceA; // Sort by discounted price (high to low)
+        });
         break;
-      case "Sale":
-        sortedProducts = sortedProducts.sort((a, b) => {
+      case "PriceDown":
+        sortedProducts.sort((a, b) => {
+          const priceA = a.discount ? a.price * a.discount : a.price;
+          const priceB = b.discount ? b.price * b.discount : b.price;
+          return priceA - priceB; // Sort by discounted price (low to high)
+        });
+        break;
+      case "SaleUp":
+        sortedProducts.sort((a, b) => {
           const aTotalSales = a.sale.reduce(
             (acc, sale) => acc + sale.number,
             0
@@ -98,15 +102,24 @@ export default function Main() {
           return bTotalSales - aTotalSales; // Sort by total sales (high to low)
         });
         break;
-      case "A-Z":
-        sortedProducts = sortedProducts.sort(
-          (a, b) => a.name.localeCompare(b.name) // Sort by name (A-Z)
-        );
+      case "SaleDown":
+        sortedProducts.sort((a, b) => {
+          const aTotalSales = a.sale.reduce(
+            (acc, sale) => acc + sale.number,
+            0
+          );
+          const bTotalSales = b.sale.reduce(
+            (acc, sale) => acc + sale.number,
+            0
+          );
+          return aTotalSales - bTotalSales; // Sort by total sales (low to high)
+        });
         break;
-      case "Z-A":
-        sortedProducts = sortedProducts.sort(
-          (a, b) => b.name.localeCompare(a.name) // Sort by name (Z-A)
-        );
+      case "AZ":
+        sortedProducts.sort((a, b) => a.name.localeCompare(b.name)); // Sort by name (A-Z)
+        break;
+      case "ZA":
+        sortedProducts.sort((a, b) => b.name.localeCompare(a.name)); // Sort by name (Z-A)
         break;
       default:
         break;
@@ -138,14 +151,40 @@ export default function Main() {
             </div>
             <div className="filter-options" ref={filterRef}>
               <ul>
-                <li onClick={() => handleFilterClick("Price")}>
-                  Price <span className="iconfont icon-upper"></span>
+                {/* Price sorting options */}
+                <li
+                  className="price-up"
+                  onClick={() => handleFilterClick("PriceUp")}
+                >
+                  Price
+                  <span className="iconfont icon-upper"></span>
                 </li>
-                <li onClick={() => handleFilterClick("Sale")}>
-                  Sales <span className="iconfont icon-upper"></span>
+                <li
+                  className="price-down"
+                  onClick={() => handleFilterClick("PriceDown")}
+                >
+                  Price
+                  <span className="iconfont icon-upper"></span>
                 </li>
-                <li onClick={() => handleFilterClick("A-Z")}>A-Z</li>
-                <li onClick={() => handleFilterClick("Z-A")}>Z-A</li>
+
+                {/* Sales sorting options */}
+                <li
+                  className="sale-up"
+                  onClick={() => handleFilterClick("SaleUp")}
+                >
+                  Sales
+                  <span className="iconfont icon-upper"></span>
+                </li>
+                <li
+                  className="sale-down"
+                  onClick={() => handleFilterClick("SaleDown")}
+                >
+                  Sales
+                  <span className="iconfont icon-upper"></span>
+                </li>
+
+                <li onClick={() => handleFilterClick("AZ")}>A-Z</li>
+                {/* <li onClick={() => handleFilterClick("ZA")}>Z-A</li> */}
               </ul>
             </div>
             <ul>
@@ -190,9 +229,7 @@ export default function Main() {
             {filteredProducts.length >= 4 && (
               <div
                 className="show-more"
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
                 <span className="iconfont icon-to-top"></span>
               </div>
@@ -207,12 +244,7 @@ export default function Main() {
                 <div>
                   Sorry, we couldn't find any items matching your selection.
                 </div>
-                <div
-                  className="goback-btn"
-                  onClick={() => {
-                    navigate("/");
-                  }}
-                >
+                <div className="goback-btn" onClick={() => navigate("/")}>
                   Go Back
                 </div>
               </div>

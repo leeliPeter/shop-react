@@ -1,4 +1,4 @@
-import { Product } from "../../ts/type";
+import { Product, url } from "../../ts/type";
 import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
 import { updateCart } from "../../Redux/userInfoSlice";
 import { useParams, useNavigate } from "react-router-dom";
@@ -35,9 +35,7 @@ export default function Detail() {
       const fetchProduct = async () => {
         setLoading(true); // Set loading to true before fetching
         try {
-          const response = await fetch(
-            `http://localhost:3001/get-product/products/${id}`
-          );
+          const response = await fetch(`${url}/get-product/products/${id}`);
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
@@ -163,17 +161,18 @@ export default function Detail() {
               : ""}
           </div>
           <div className="product-name">{product.name}</div>
-
-          <span
-            className={`price ${product.discount ? "abandoned-price" : ""}`}
-          >
-            ${product.price.toFixed(2)}
-          </span>
-          {product.discount > 0 && (
-            <span className="discount-price">
-              ${(product.price * product.discount).toFixed(2)}
+          <div className="price">
+            <span
+              className={`price ${product.discount ? "abandoned-price" : ""}`}
+            >
+              ${product.price.toFixed(2)}
             </span>
-          )}
+            {product.discount > 0 && (
+              <span className="discount-price">
+                ${(product.price * product.discount).toFixed(2)}
+              </span>
+            )}
+          </div>
 
           <div className="product-info">
             <p>{product.description}</p>

@@ -7,7 +7,7 @@
 {
     margin: 0 auto;
     width: 100%;
-    height: 200px;
+    height: 190px;
     background-image: linear-gradient(to right, rgb(215, 172, 250),#ee97d2
     ,rgb(248, 219, 59)
     );
@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding:25px 30px;
+    padding:20px 30px;
     position: relative;
 }
 .profile .log-out {
@@ -34,7 +34,7 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 25px 0;
+  padding: 30px 0;
   box-sizing: border-box;
   overflow: hidden;
   font-size: 0px;
@@ -42,12 +42,12 @@
 }
 .profile .log-out.active {
   width: 100%;
-  font-size: 22px;
+  font-size: 18px;
   opacity: 1;
 }
 .profile .log-out .question {
   /* font-size: 25px; */
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .profile .log-out .answer-btn {
   display: flex;
@@ -74,7 +74,7 @@
   background-color: #ffffff;
   width: 50px;
   height: 30px;
-  font-size: 19px;
+  font-size: 16px;
   border-radius: 50px;
   display: flex;
   justify-content: center;
@@ -88,9 +88,9 @@
   align-items: center;
 }
 .profile .user-basic .greeting .user-icon{
-    font-size: 25px;
-    width: 50px;
-    height: 50px;
+    font-size: 19px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: rgb(255, 248, 223);
     display: flex;
@@ -99,28 +99,28 @@
     margin-right: 20px;
 }
 .profile .user-basic .greeting .hi div:first-child{
-    font-size: 30px;
+    font-size: 21px;
     color: white;
     font-weight: bold;
     margin-bottom: 5px;
 }
 .profile .user-basic .greeting .hi div:last-child{
-    font-size: 18px;
+    font-size: 16px;
     color: white;
 }
 .profile .reg-date{
     color: white;
-    font-size: 21px;
+    font-size: 18px;
 }
 .profile .myaccount{
     padding: 10px 10px;}
 .profile .myaccount .account-title{
-    font-size: 25px;
-    margin: 30px 0;
+    font-size: 20px;
+    margin: 20px 0;
 }
 .profile .myaccount>.myaccount-nav>li{
     padding: 10px 10px;
-    font-size: 25px;
+    /* font-size: 25px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -132,10 +132,10 @@
     color: #000;
 }
 .profile .myaccount>.myaccount-nav .profile-order{
-  font-size: 22px;
+  font-size: 18px;
 }
 .profile-personal-info .profileWord{
-  font-size: 22px;
+  font-size: 18px;
 }
 
 /* order-history */
@@ -146,24 +146,24 @@
     overflow: hidden;
     transition-property: all;
     transition-duration: 0.5s;
-    font-size: 18px;
+    font-size: 15px;
 }
 .profile .empty-order-history {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    font-size: 25px;
+    font-size: 20px;
     flex-direction: column;
     color: #707070;
 }
 .profile .order-history .order-num{
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 600;
 }
 .profile .empty-order-history div:first-child {
     margin-bottom: 5px;
-    font-size: 30px;
+    font-size: 20px;
 }
 .profile .order-history>ul>li{
     padding: 10px 15px;
@@ -181,7 +181,7 @@
 }
 .profile .order-history .order ul li{
     margin: 15px 0;
-  font-size: 16px;
+  font-size: 15px;
   padding: 0 10px;
   border-bottom: 1px solid #e8e8e8;
 }
@@ -203,13 +203,13 @@
 }
 .profile .order-history .quantity-price .price .discount-price{
   color: rgb(164, 32, 32);
-  font-size: 20px;
+  font-size: 16px;
   margin-right: 10px;
 }
 .profile .order-history .quantity-price .price .abandoned-price{
   text-decoration: line-through;
   color: #707070;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .profile .order-history li .order-item-total{
@@ -218,7 +218,6 @@
     padding-top:10px;
     text-align: end;
     display: flex;
-    justify-content: space-between;
 }
 .profile .order-history .order-status .unpaid{
   font-weight: 600;
@@ -243,7 +242,7 @@
     /* padding: 20px 20px; */
     background-color: white;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 16px;
     height: 0;
     overflow: hidden;
     transition-property: all;
@@ -255,6 +254,9 @@
 .profile .personal-info .info-content li>div{
     margin: 5px 0;
     width: 50%;
+}
+.profile .personal-info .info-content li div:first-child{
+    font-weight: 600;
 }
 .profile .personal-info .name,
 .profile .personal-info .birth-gender,
@@ -275,7 +277,7 @@
 }
 
 .profile .personal-info .edit{
-    font-size: 20px;
+    font-size: 16px;
     color: #707070;
     display: flex;
     justify-content: end;
@@ -294,7 +296,7 @@
     margin-right: 10px;
 }
 .profile .personal-info .edit .icon-edit{
-    font-size: 23px;
+    font-size: 19px;
     margin-right: 10px;
 }
 /* person-form */
@@ -305,7 +307,7 @@
     border: 1px solid #ccc;
     border-radius: 20px;
     background-color: #f9f9f9;
-    font-size: 17px;
+    font-size: 16px;
     margin-top: 0px;
   }
 
@@ -338,7 +340,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 17px; /* Increased font size */
+    font-size: 15px; /* Increased font size */
 
   }
 
@@ -374,18 +376,19 @@
 
   .profile .personal-info .button-container {
     display: flex;
-    gap: 10px;
+    gap: 35px;
+    justify-content: center;
   }
 
   .profile .personal-info button {
     display: block;
-    width: 100%;
-    padding: 15px; /* Increased padding */
+    width:40%;
+    padding:13px 5px;
     background-color: #000000;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 17px; /* Increased font size */
+    font-size: 16px; /* Increased font size */
     cursor: pointer;
     border-radius: 50px;
     margin-top: 10px;

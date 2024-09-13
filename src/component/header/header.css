@@ -8,7 +8,7 @@ header .container{
     height: 100%;
 }
 header .container .logo{
-    height: 90px;
+    height: 60px;
 }
 header .container .shop-name{
         color: #ffffff;
@@ -21,8 +21,8 @@ header .container .shop-name{
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         letter-spacing: 3px;
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        font-size: 23px;
-        padding: 10px 20px;
+        font-size: 16px;
+        padding: 10px 15px;
         margin-left: 25px;
 }
 header nav>ul{
@@ -35,7 +35,7 @@ header nav>ul li{
     position: relative;
 }
 header nav>ul li .category-name{
-    font-size: 160%;
+    font-size: 130%;
     color: #000;
     cursor: pointer;
 }   
@@ -50,8 +50,7 @@ header nav .second-menu{
     /* height: 140px; */
     height: 0;
     position: absolute; 
-    width: 150px;
-    /* padding: 10px; */
+    width: 100px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition-property: all;
@@ -61,7 +60,7 @@ header nav .second-menu{
 header nav .second-menu ul li{
     margin-top: 10px;
     width: 0%;
-    font-size: 130%;
+    font-size: 100%;
     transition-timing-function: ease-out;
     transition-property: width;
     transition-duration: 0.5s;
@@ -85,7 +84,7 @@ header nav .second-menu ul li:hover{
 }
 .guide .container ul li{
     color: #707070;
-    font-size: 18px;
+    font-size: 16px;
     padding-right: 10px;
     padding-left: 10px;
     cursor: pointer;

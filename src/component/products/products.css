@@ -5,10 +5,10 @@ main .container{
 }
 main .container .filter{
     position: absolute;
-    top: -55px;
+    top: -59px;
     right: 10px;
-    width: 120px;
-    height: 35px;
+    width: 85px;
+    height: 30px;
     background-color: rgb(224, 35, 35);
     border-radius: 50px;
     display: flex;
@@ -21,13 +21,13 @@ main .container .filter:hover{
     opacity: 0.8;
 }
 main .container .filter .icon-filter{
-    font-size: 20px;
+    font-size: 18px;
     margin-right: 5px;
     margin-left: -5px;
     color: white;
 }
 main .container .filter .word{
-    font-size: 18px;
+    font-size: 16px;
     margin-top: -1px;
     color: white;
     font-weight: 550;
@@ -35,9 +35,9 @@ main .container .filter .word{
 
 main .container .filter-options{
     position: absolute;
-    top: -45px;
+    top: -57px;
     right: 10px;
-    width: 120px;
+    width: 85px;
     height: 0px;
     background-color: rgb(246, 218, 186);
     border-radius: 21px;
@@ -54,25 +54,26 @@ main .container .filter-options ul{
     margin-top: 28px;
 }
 main .container .filter-options ul li{
-
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 8px 17px;
+    font-size: 16px;
     cursor: pointer;
 }
 main .container .filter-options ul li:hover{
     color: rgb(207, 116, 116);
 }
-main .container .filter-options ul li:nth-child(2),
-main .container .filter-options ul li:first-child{
+main .container .filter-options ul li{
     position: relative;
 }
-main .container .filter-options ul li:nth-child(2) .icon-upper,
-main .container .filter-options ul li:first-child .icon-upper{
+main .container .filter-options ul li .icon-upper{
     position: absolute;
     top: 12px;
-    right: 3px;
-    font-size: 15px;
+    right: 6px;
+    font-size: 10px;
     /* color: rgb(207, 116, 116); */
+}
+main .container .filter-options ul .sale-down .icon-upper,
+main .container .filter-options ul .price-down .icon-upper{
+    transform: rotate(180deg);
 }
 
 
@@ -94,7 +95,7 @@ main .container>ul li{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
 }
 main .container>ul li:hover{
@@ -112,7 +113,7 @@ main .container>ul li .description{
     width: 90%;
     padding: 20px 20px;
     padding-bottom: 30px;
-    height: 75px;
+    height: 70px;
     padding-top: 10px;
 }
 main .container>ul li .description div,
@@ -120,19 +121,19 @@ main .container>ul li .description span{
     margin: 10px 0;
 }
 main .container>ul li .description .product-brand{
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
 }
 
 main .container>ul li .description .abandonedPrice{
     text-decoration: line-through;
     color: #707070;
-    font-size: 17px;
+    font-size: 16px;
 }
 main .container>ul li .description .discountPrice{
     color: rgb(164, 32, 32);
-    font-size: 20px;
-    margin-left: 20px;
+    font-size: 17px;
+    margin-left: 17px;
 }
 main .container .show-more {
     display: flex;
@@ -141,10 +142,9 @@ main .container .show-more {
 main .container .show-more>span{
     background-color: rgb(207, 65, 65);
     color: white;
-    padding: 10px 10px;
-    width: 50px;
+    padding: 8px 8px;
+    width: 30px;
     text-align: center;
-    font-size: 23px;
     border-radius: 50px;
     cursor: pointer;
     margin-bottom: 35px;
@@ -154,7 +154,7 @@ main .container .show-more span:hover{
     opacity: 0.8;
 }
 main .container .show-more .iconfont{
-    font-size: 25px;
+    font-size: 18px;
 }
 
 
@@ -168,7 +168,7 @@ main .container .notfound{
 }
 
 main .container .notfound .reminder{
-    font-size: 190%;
+    font-size: 18px;
     padding: 0 10px;
     color: #707070;
     text-align: center;
@@ -182,10 +182,10 @@ main .container .notfound .reminder{
 main .container .notfound .reminder .goback-btn{
     background-color: #c73a8e ;
     color: white;
-    padding: 15px 20px;
-    width: 150px;
+    padding: 5px 5px;
+    width: 100px;
     text-align: center;
-    font-size: 25px;
+    font-size: 16px;
     border-radius: 50px;
     cursor: pointer;
     margin-top: 50px;

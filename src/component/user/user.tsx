@@ -130,7 +130,6 @@ const User: React.FC = () => {
     const newReminders = quantityReminders.filter((_, i) => i !== index);
     setQuantityReminders(newReminders);
   };
-  console.log(cart);
   const totalCost = cart.reduce((total, item) => {
     const itemPrice = item.product.discount
       ? item.product.price * item.product.discount

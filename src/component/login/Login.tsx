@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateUserInfo } from "../../Redux/userInfoSlice";
-import { login } from "../../Redux/userInfoSlice";
+import { updateUserInfo, login } from "../../Redux/userInfoSlice";
 import { Link } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
+import { url } from "../../ts/type";
 import "./login.css";
 
 const Login: React.FC = () => {
@@ -14,12 +14,16 @@ const Login: React.FC = () => {
   const [loginClass, setLoginClass] = useState("login-button");
   const [reminderMessage, setReminderMessage] = useState("");
   const [reminderClass, setReminderClass] = useState("");
+  const [passwordFocus, setPasswordFocus] = useState(false);
+  const [passwordLong, setPasswordLong] = useState(false);
+  const [passwordLetter, setPasswordLetter] = useState(false);
   const loginFormRef = useRef<HTMLDivElement>(null);
   const regFormRef = useRef<HTMLDivElement>(null);
   const regButtonRef = useRef<HTMLDivElement>(null);
   const loginButtonRef = useRef<HTMLDivElement>(null);
   const regFormElementRef = useRef<HTMLFormElement>(null);
   const loginFormElementRef = useRef<HTMLFormElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -69,6 +73,22 @@ const Login: React.FC = () => {
     }
     return null;
   };
+  const passwordCheck = () => {
+    const password = passwordRef.current?.value || "";
+    const minLength = 8;
+    const maxLength = 16;
+    const hasLetters = /[a-zA-Z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+
+    setPasswordLong(
+      password.length >= minLength && password.length <= maxLength
+    );
+    setPasswordLetter(hasLetters && hasNumbers);
+  };
+  // Add this useEffect to call passwordCheck when password value changes
+  useEffect(() => {
+    passwordCheck();
+  }, [passwordRef.current?.value, passwordFocus]);
 
   const handleRegisterSubmit = async (
     event: React.FormEvent<HTMLFormElement>
@@ -89,7 +109,7 @@ const Login: React.FC = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/user/register", {
+      const response = await fetch(`${url}/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -123,7 +143,7 @@ const Login: React.FC = () => {
     const password = formData.get("password") as string;
 
     try {
-      const response = await fetch("http://localhost:3001/user/login", {
+      const response = await fetch(`${url}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -160,7 +180,7 @@ const Login: React.FC = () => {
 
   const handleGoogleLoginSuccess = async (response: any) => {
     try {
-      const res = await fetch("http://localhost:3001/google-login", {
+      const res = await fetch(`${url}/google-login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -189,11 +209,8 @@ const Login: React.FC = () => {
     }
   };
 
-  // const handleGoogleLoginFailure = (error: any) => {
-  //   console.error("Google login failed:", error);
-  //   setReminderMessage("Google login failed. Please try again later.");
-  //   setReminderClass("error");
-  // };
+  const handlePasswordFocus = () => setPasswordFocus(true);
+  const handlePasswordBlur = () => setPasswordFocus(false);
 
   return (
     <div className="login-reg">
@@ -235,7 +252,36 @@ const Login: React.FC = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
+                onFocus={handlePasswordFocus}
+                onBlur={handlePasswordBlur}
+                onChange={passwordCheck}
+                ref={passwordRef}
               />
+            </div>
+            <div
+              className="password-check"
+              style={{ height: passwordFocus ? "70px" : "0px" }}
+            >
+              <ol>
+                <li
+                  style={{
+                    color: passwordLong
+                      ? "rgb(30, 123, 62)"
+                      : "rgb(140, 33, 33)",
+                  }}
+                >
+                  Must be between 8 and 16 characters
+                </li>
+                <li
+                  style={{
+                    color: passwordLetter
+                      ? "rgb(30, 123, 62)"
+                      : "rgb(140, 33, 33)",
+                  }}
+                >
+                  Include both letters and numbers
+                </li>
+              </ol>
             </div>
             <div className="subscribe">
               <input type="checkbox" name="subscribe" />

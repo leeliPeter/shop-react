@@ -202,7 +202,7 @@
     justify-content: space-around;
 }
 .popup-cart .cart-items .quantityReminder{
-    font-size: 14px;
+    font-size: 13.5px;
     color: #7d3636;
     margin-left: 3px;
 }
@@ -234,7 +234,7 @@
     border: 1px solid #707070;
     background-color: white;
     border-radius: 50%;
-    padding: 5px;
+    padding: 3px;
     margin: 0 5px
 }
 .popup-cart  .cart-items .icon-minus:hover,

@@ -22,7 +22,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
   const dispatch = useAppDispatch();
-  const userInfo = useAppSelector((state) => state.userInfo);
   const productsState = useAppSelector((state) => state.products);
   const homeImagesState = useAppSelector((state) => state.homeImages); // Get the home images state
   const location = useLocation();
@@ -30,9 +29,7 @@ function App() {
   useEffect(() => {
     // Check user status on component mount
     const checkStatus = async () => {
-      const status = await checkUserStatus(dispatch);
-      console.log("User login status:", status);
-      console.log("User info:", userInfo); // Log the userInfo here
+      await checkUserStatus(dispatch);
     };
 
     checkStatus();

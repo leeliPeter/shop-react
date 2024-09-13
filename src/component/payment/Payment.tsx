@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { url } from "../../ts/type";
 import "./payment.css";
 
 export default function Payment() {
@@ -9,7 +10,7 @@ export default function Payment() {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/order/${orderId}`, {
+        const response = await fetch(`${url}/order/${orderId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

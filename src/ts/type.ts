@@ -58,6 +58,9 @@ type UserInfo = {
 };
 
 
+const url:String = "https://petershops.com";
+export {url};
+
 export type { Product, Item, Cart, OrderHistory, UserInfo,OrderStatus };
 
 

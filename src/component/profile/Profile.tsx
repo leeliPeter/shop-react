@@ -6,7 +6,7 @@ import { logout, clearUserInfoExceptCart } from "../../Redux/userInfoSlice";
 import { useAppDispatch } from "../../Redux/hooks";
 import { updateUserInfo } from "../../Redux/userInfoSlice";
 
-import { Order, Item } from "../../ts/type";
+import { Order, Item, url } from "../../ts/type";
 import "./profile.css";
 
 export default function Profile() {
@@ -27,11 +27,11 @@ export default function Profile() {
     if (!isLogin) {
       navigate("/");
     }
-    console.log("profile", userInfo);
+    // console.log("profile", userInfo);
   }, [isLogin, navigate]);
 
   useEffect(() => {
-    console.log("User Info:", userInfo);
+    // console.log("User Info:", userInfo);
   }, [userInfo]);
 
   useEffect(() => {
@@ -66,18 +66,16 @@ export default function Profile() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:3001/user/logout", {
+      const response = await fetch(`${url}/user/logout`, {
         method: "POST",
         credentials: "include", // Include cookies in the request
       });
 
       if (response.ok) {
-        const data = await response.json();
-        console.log(data.message); // This will log: "Logged out successfully"
         dispatch(logout());
         dispatch(clearUserInfoExceptCart());
       } else {
-        console.log("Logout failed:", response.statusText);
+        // console.log("Logout failed:", response.statusText);
       }
     } catch (error) {
       console.error("Error during logout:", error);
@@ -171,7 +169,7 @@ export default function Profile() {
     } else if (!isEdit && isprofilePersonalInfo) {
       infoContent.classList.remove("hide");
       editForm.classList.add("hide");
-      personalInfo.style.height = "660px";
+      personalInfo.style.height = "600px";
       personalInfo.style.padding = "15px";
     } else {
       // editForm.classList.add("hide");
@@ -214,11 +212,9 @@ export default function Profile() {
         ...userInfo.profile,
         ...formData, // Assuming formData contains all necessary fields
       };
-      console.log(updateUserInfo);
       // Dispatch the updateUserInfo action to update the Redux state and localStorage
       dispatch(updateUserInfo({ profile: updatedProfile }));
       setIsEdit(false);
-      console.log("Profile updated successfully");
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -357,63 +353,62 @@ export default function Profile() {
               <ul className="info-content">
                 <li className="email">
                   <div>Email</div>
-                  <div>{userInfo.email}</div>
+                  <div>{userInfo.email || "-"}</div>
                 </li>
                 <li className="name">
                   <div className="f-name">
                     <div>First name</div>
-                    <div>{userInfo.profile.firstName}</div>
+                    <div>{userInfo.profile.firstName || "-"}</div>
                   </div>
                   <div className="l-name">
                     <div>Last name</div>
-                    <div>{userInfo.profile.lastName}</div>
+                    <div>{userInfo.profile.lastName || "-"}</div>
                   </div>
                 </li>
                 <li className="birth-gender">
                   <div className="birthday">
                     <div>Date of birth</div>
-                    <div>{userInfo.profile.birthday}</div>
+                    <div>{userInfo.profile.birthday || "-"}</div>
                   </div>
                   <div className="gender">
                     <div>Gender</div>
-                    <div>{userInfo.profile.gender}</div>
+                    <div>{userInfo.profile.gender || "-"}</div>
                   </div>
                 </li>
                 <li className="phone">
                   <div>Phone</div>
                   <div>
-                    <div>{userInfo.profile.phone}</div>
+                    <div>{userInfo.profile.phone || "-"}</div>
                   </div>
                 </li>
                 <li className="country-city">
                   <div className="country">
                     <div>Country</div>
-                    <div>{userInfo.profile.country}</div>
+                    <div>{userInfo.profile.country || "-"}</div>
                   </div>
                   <div className="state">
                     <div>State</div>
-                    <div>{userInfo.profile.state}</div>
+                    <div>{userInfo.profile.state || "-"}</div>
                   </div>
                 </li>
                 <li className="state-zip">
                   <div className="city">
                     <div>City</div>
-                    <div>{userInfo.profile.city}</div>
+                    <div>{userInfo.profile.city || "-"}</div>
                   </div>
                   <div className="zip">
                     <div>Zip</div>
-                    <div>{userInfo.profile.zip}</div>
+                    <div>{userInfo.profile.zip || "-"}</div>
                   </div>
                 </li>
                 <li className="address">
                   <div>Address</div>
-                  <div>{userInfo.profile.address}</div>
+                  <div>{userInfo.profile.address || "-"}</div>
                 </li>
                 <div
                   className="edit"
                   onClick={() => {
                     setIsEdit(true);
-                    console.log(isEdit);
                   }}
                 >
                   <div>Edit your details</div>
@@ -562,10 +557,10 @@ export default function Profile() {
                     className="cancel-change-button"
                     onClick={handleCancelChanges}
                   >
-                    Cancel changes
+                    Cancel
                   </button>
                   <button type="submit" className="save-change-button">
-                    Save changes
+                    Save
                   </button>
                 </div>
               </form>

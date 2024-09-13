@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { RootState } from "../../Redux/store";
 import { useAppDispatch } from "../../Redux/hooks";
 import { addOrderToHistory, clearCart } from "../../Redux/userInfoSlice";
+import { url } from "../../ts/type";
 
 import "./check-out.css";
 
@@ -120,7 +121,7 @@ export default function CheckOut() {
     };
 
     try {
-      const response = await fetch("http://localhost:3001/order", {
+      const response = await fetch(`${url}/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
